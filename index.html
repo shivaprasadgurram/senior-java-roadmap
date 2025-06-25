@@ -39,13 +39,15 @@
             border-bottom: 1px solid #f5f5f4; /* stone-100 */
         }
         .card-content {
-            padding: 1.5rem;
+            padding: 0 1.5rem; /* Set horizontal padding always, vertical padding initially zero */
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.7s ease-in-out, padding 0.7s ease-in-out;
+            transition: max-height 0.7s ease-in-out, padding-top 0.7s ease-in-out, padding-bottom 0.7s ease-in-out;
         }
         .card-content.open {
             max-height: 4000px; /* Increased max-height for detailed daily plans */
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
         }
         .nav-link {
             transition: all 0.2s ease-in-out;
@@ -234,7 +236,7 @@
                                     <li><strong>DSA:</strong> Strings basics. Solve 2-3 LeetCode Easy problems (e.g., Valid Anagram, First Unique Character in a String).</li>
                                     <li>Coding Task: Write a function to check if two strings are anagrams.</li>
                                     <li>Resource: <a href="https://leetcode.com/tag/string/" target="_blank">LeetCode - String Tag</a></li>
-                                </ul>
+                                    </ul>
                             </div>
                         </div>
                         <div class="day-plan" id="fast-track-day-6">
@@ -2407,6 +2409,15 @@
                                 </ul>
                             </div>
                         </div>
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="188">
+                            <input type="checkbox" class="day-checkbox">
+                            <div class="day-details">
+                                <h5>Day 73 (Wed - 2 hrs)</h5>
+                                <ul class="space-y-1 list-disc list-inside text-stone-600">
+                                    <li>Behavioral: Practice articulating a technical decision you made and its impact.</li>
+                                </ul>
+                            </div>
+                        </div>
                         <div class="day-plan" data-phase-id="phase3" data-overall-day-id="189">
                             <input type="checkbox" class="day-checkbox">
                             <div class="day-details">
@@ -2415,6 +2426,15 @@
                                     <li>AI for Java: Explore different vector database integrations (e.g., use a basic in-memory vector store in LangChain4j).</li>
                                     <li>Coding Task: Integrate a simple in-memory vector store into your RAG PoC using LangChain4j.</li>
                                     <li>Resource: <a href="https://docs.langchain4j.dev/tutorials/vector-store/" target="_blank">LangChain4j Vector Store Tutorials</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="190">
+                            <input type="checkbox" class="day-checkbox">
+                            <div class="day-details">
+                                <h5>Day 75 (Fri - 2 hrs)</h5>
+                                <ul class="space-y-1 list-disc list-inside text-stone-600">
+                                    <li>Behavioral: Practice discussing a time you navigated ambiguity or incomplete requirements.</li>
                                 </ul>
                             </div>
                         </div>
@@ -2488,6 +2508,16 @@
                                 </ul>
                             </div>
                         </div>
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="198">
+                            <input type="checkbox" class="day-checkbox">
+                            <div class="day-details">
+                                <h5>Day 83 (Sat - 4 hrs)</h5>
+                                <ul class="space-y-1 list-disc list-inside text-stone-600">
+                                    <li><strong>Mock Interview (Behavioral/Leadership):</strong> Focus on delivering your STAR stories and discussing leadership experiences.</li>
+                                    <li>Networking: Send out first batch of referral requests.</li>
+                                </ul>
+                            </div>
+                        </div>
                         <div class="day-plan" data-phase-id="phase3" data-overall-day-id="199">
                             <input type="checkbox" class="day-checkbox">
                             <div class="day-details">
@@ -2545,6 +2575,15 @@
                                 </ul>
                             </div>
                         </div>
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="205">
+                            <input type="checkbox" class="day-checkbox">
+                            <div class="day-details">
+                                <h5>Day 90 (Sat - 4 hrs)</h5>
+                                <ul class="space-y-1 list-disc list-inside text-stone-600">
+                                    <li>Rest and prepare mentally for upcoming interviews. Light review only.</li>
+                                </ul>
+                            </div>
+                        </div>
                         <div class="day-plan" data-phase-id="phase3" data-overall-day-id="206">
                             <input type="checkbox" class="day-checkbox">
                             <div class="day-details">
@@ -2560,7 +2599,7 @@
         </section>
 
         <!-- Top Coding Questions List -->
-        <section id="top-coding-questions" class="mb-16 pt-16 -mt-16 p-8">
+        <section id="top-coding-questions" class="mt-16 mb-16 pt-16 -mt-16 p-8"> <!-- Added mt-16 here -->
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-slate-800">Top Coding Interview Questions (Curated List)</h2>
                 <p class="mt-2 max-w-3xl mx-auto text-stone-700">Here's a curated list of frequently asked and highly representative coding problems to solidify your understanding of core DSA concepts.</p>
@@ -2680,26 +2719,24 @@
                     const icon = header.querySelector('span');
                     content.classList.toggle('open');
                     
+                    // The CSS transition on max-height and padding now handles the animation.
+                    // We just need to toggle the 'open' class.
                     if (content.classList.contains('open')) {
-                        content.style.paddingTop = '1.5rem';
-                        content.style.paddingBottom = '1.5rem';
                         icon.style.transform = 'rotate(180deg)';
                     } else {
-                        content.style.paddingTop = '0';
-                        content.style.paddingBottom = '0';
                         icon.style.transform = 'rotate(0deg)';
                     }
                 });
             });
 
-            // STAR method toggle
-            const starItems = document.querySelectorAll('.star-item button');
-            starItems.forEach(button => {
-                button.addEventListener('click', () => {
-                    const content = button.nextElementSibling;
-                    content.classList.toggle('hidden');
-                });
-            });
+            // STAR method toggle - Removed as it's not present in current HTML but kept for reference
+            // const starItems = document.querySelectorAll('.star-item button');
+            // starItems.forEach(button => {
+            //     button.addEventListener('click', () => {
+            //         const content = button.nextElementSibling;
+            //         content.classList.toggle('hidden');
+            //     });
+            // });
             
             // Navbar active link on scroll
             const sections = document.querySelectorAll('section');
@@ -2773,7 +2810,7 @@
                 'fast-track': { totalDays: 30, progressBarId: 'fast-track-progress-bar' },
                 'phase1': { totalDays: 42, progressBarId: 'phase1-progress-bar' },
                 'phase2': { totalDays: 60, progressBarId: 'phase2-progress-bar' },
-                'phase3': { totalDays: 63, progressBarId: 'phase3-progress-bar' } // Adjusted totalDays after removing 3 days
+                'phase3': { totalDays: 63, progressBarId: 'phase3-progress-bar' }
             };
 
             const allCheckboxes = document.querySelectorAll('.day-checkbox');
