@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Chosen Palette: Warm Harmony (Stone, Amber, Teal, Slate) -->
-    <!-- Application Structure Plan: The SPA is structured as a phased, interactive roadmap (3-6 months), with each phase offering a granular week-wise and day-wise breakdown. A new 'Fast Track: 1-Month Plan' has been added as a distinct, prominent section at the top for urgent preparation needs. This highly detailed, task-oriented design, complete with resource links, was chosen to provide explicit guidance and reduce ambiguity for the user, making the daunting task of interview preparation more actionable and less overwhelming. A sticky top navigation allows quick jumps between phases and the new fast track plan, and expandable cards within each section reveal detailed daily plans for DSA, System Design, Java/Spring Boot/Microservices, and AI/Behavioral Integration. This structure ensures users can focus on specific daily goals, promoting consistent progress and a structured learning path towards product company interviews. -->
+    <!-- Application Structure Plan: The SPA is structured as a phased, interactive roadmap (3-6 months), with each phase offering a granular week-wise and day-wise breakdown. A new 'Fast Track: 1-Month Plan' has been added as a distinct, prominent section at the top, now structured as a 30-day plan with daily topics and resources. This highly detailed, task-oriented design, complete with resource links, was chosen to provide explicit guidance and reduce ambiguity for the user, making the daunting task of interview preparation more actionable and less overwhelming. A sticky top navigation allows quick jumps between sections, and expandable cards within each section reveal detailed daily plans for DSA, System Design, Java/Spring Boot/Microservices, and AI/Behavioral Integration. This structure ensures users can focus on specific daily goals, promoting consistent progress and a structured learning path towards product company interviews. -->
     <!-- Visualization & Content Choices:
         - Report Info: 3-6 Month Plan Time Allocation -> Goal: Compare effort across domains -> Viz: Horizontal Bar Chart -> Interaction: Static, for quick visual comparison -> Justification: A bar chart is the clearest way to show proportional effort for a given phase. Library: Chart.js.
         - Report Info: System Design Interview Steps -> Goal: Organize a process -> Viz: HTML/CSS Numbered List Diagram -> Interaction: Click to reveal details for each step -> Justification: An interactive, step-by-step diagram makes the complex process digestible and memorable. Library: Custom JS. (NOTE: This specific element was mentioned in the previous comment, but not yet implemented. This update focuses on the daily plan content.)
@@ -109,7 +109,7 @@
     <!-- Header -->
     <header class="bg-white shadow-sm py-6">
         <div class="container mx-auto px-6 text-center">
-            <h1 class="text-3xl md:text-4xl font-bold text-slate-800">Your Interactive Roadmap to Product Company Success</h1>
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-800">Your Interactive Roadmap to Product Company</h1>
             <p class="mt-2 text-lg text-slate-600">A Strategic Preparation Plan for Senior Java Engineers</p>
         </div>
     </header>
@@ -130,67 +130,67 @@
     <main class="container mx-auto p-4 md:p-8">
 
         <!-- Fast Track: 1-Month Immediate Interview Plan -->
-        <section id="fast-track" class="mb-16 pt-16 -mt-16 bg-gradient-to-r from-teal-50 to-emerald-50 rounded-lg p-8 shadow-xl">
+        <section id="fast-track" class="mb-16 pt-16 -mt-16 p-8">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-teal-800">Fast Track: 1-Month Immediate Interview Plan</h2>
-                <p class="text-xl text-teal-600 mt-2"> (~18 hours/week for project interviews)</p>
-                <p class="mt-4 max-w-3xl mx-auto text-stone-700">This accelerated 1-month plan is designed for immediate project interviews, focusing on the most critical and frequently asked topics in Java, Spring Boot, Microservices, LLD, and essential DSA. It prioritizes breadth over depth, ensuring you're ready to discuss foundational and intermediate concepts and solve common coding challenges under time pressure.</p>
+                <h2 class="text-3xl font-bold text-slate-800">Fast Track: 1-Month Immediate Interview Plan</h2>
+                <p class="text-xl text-slate-600 mt-2"> (~18 hours/week)</p>
+                <p class="mt-4 max-w-3xl mx-auto text-stone-700">This accelerated 1-month plan is designed for immediate interviews, focusing on the most critical and frequently asked topics in Java, Spring Boot, Microservices, LLD, and essential DSA. It prioritizes breadth over depth, ensuring you're ready to discuss foundational and intermediate concepts and solve common coding challenges under time pressure. This plan assumes you start tomorrow for 30 days!</p>
             </div>
 
             <div class="grid md:grid-cols-1 lg:grid-cols-1 gap-8">
                 <div class="card">
-                    <div class="card-header flex justify-between items-center bg-teal-100">
-                        <h3 class="text-xl font-semibold text-teal-700">Week 1: Core Java & DSA Fundamentals</h3>
+                    <div class="card-header flex justify-between items-center bg-stone-100">
+                        <h3 class="text-xl font-semibold text-slate-700">Days 1-7: Core Java, OOPs & DSA Fundamentals</h3>
                         <span class="text-teal-500 transform transition-transform duration-300">&#9662;</span>
                     </div>
                     <div class="card-content">
                         <p class="mb-4 text-stone-600">Focus on refreshing core Java, OOPs, and essential DSA concepts. Practice easy/medium LeetCode problems.</p>
                         <div class="day-plan">
-                            <h5>Day 1 (Mon - 2 hrs)</h5>
+                            <h5>Day 1 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
-                                <li><strong>Java:</strong> JVM, JRE, JDK, Classloaders.</li>
+                                <li><strong>Java:</strong> JVM, JRE, JDK, Classloaders. How Java compiles & runs.</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/jvm-jre-jdk-java-overview/" target="_blank">GeeksforGeeks - JVM, JRE, JDK</a></li>
                             </ul>
                         </div>
                         <div class="day-plan">
-                            <h5>Day 2 (Tue - 2 hrs)</h5>
+                            <h5>Day 2 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Java:</strong> OOPs (Encapsulation, Abstraction, Inheritance, Polymorphism).</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/java-oops-concepts/" target="_blank">GeeksforGeeks - Java OOPs</a></li>
                             </ul>
                         </div>
                         <div class="day-plan">
-                            <h5>Day 3 (Wed - 2 hrs)</h5>
+                            <h5>Day 3 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
-                                <li><strong>DSA:</strong> Time & Space Complexity (Big O). Arrays and Strings basics.</li>
+                                <li><strong>DSA:</strong> Time & Space Complexity (Big O). Arrays basics.</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/understanding-time-and-space-complexity-in-java/" target="_blank">GeeksforGeeks - Complexity</a>, <a href="https://neetcode.io/roadmap" target="_blank">NeetCode - Arrays & Hashing</a></li>
                             </ul>
                         </div>
                         <div class="day-plan">
-                            <h5>Day 4 (Thu - 2 hrs)</h5>
+                            <h5>Day 4 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Java:</strong> Exception Handling (`try-catch-finally`, custom exceptions).</li>
                                 <li>Resource: <a href="https://www.baeldung.com/java-exceptions" target="_blank">Baeldung - Java Exceptions</a></li>
                             </ul>
                         </div>
                         <div class="day-plan">
-                            <h5>Day 5 (Fri - 2 hrs)</h5>
+                            <h5>Day 5 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
-                                <li><strong>DSA:</strong> Linked Lists (operations, two-pointers). Solve 2 LeetCode Easy LL problems.</li>
-                                <li>Resource: <a href="https://neetcode.io/roadmap" target="_blank">NeetCode - Linked List</a></li>
+                                <li><strong>DSA:</strong> Strings basics. Solve 2-3 LeetCode Easy problems (e.g., Valid Anagram, First Unique Character in a String).</li>
+                                <li>Resource: <a href="https://leetcode.com/tag/string/" target="_blank">LeetCode - String Tag</a></li>
                             </ul>
                         </div>
                         <div class="day-plan">
-                            <h5>Day 6 (Sat - 4 hrs)</h5>
+                            <h5>Day 6 (4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Java:</strong> Collections Framework (`List`, `Set`, `Map` interfaces, basic implementations).</li>
                                 <li>Resource: <a href="https://www.baeldung.com/java-collections-tutorial" target="_blank">Baeldung - Java Collections</a></li>
                             </ul>
                         </div>
                         <div class="day-plan">
-                            <h5>Day 7 (Sun - 4 hrs)</h5>
+                            <h5>Day 7 (4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
-                                <li><strong>DSA:</strong> Hash Maps/Sets (usage, `hashCode`, `equals`). Solve 2-3 LeetCode Medium problems using Hash Maps/Arrays (e.g., Two Sum, Group Anagrams).</li>
+                                <li><strong>DSA:</strong> Hash Maps/Sets (usage, `hashCode`, `equals`). Solve 2-3 LeetCode Medium problems (e.g., Two Sum, Contains Duplicate, Longest Substring Without Repeating Characters).</li>
                                 <li>Resource: <a href="https://neetcode.io/roadmap" target="_blank">NeetCode - Hash Maps</a></li>
                             </ul>
                         </div>
@@ -198,177 +198,188 @@
                 </div>
 
                 <div class="card">
-                    <div class="card-header flex justify-between items-center bg-teal-100">
-                        <h3 class="text-xl font-semibold text-teal-700">Week 2: Advanced Java & Spring Boot Core</h3>
+                    <div class="card-header flex justify-between items-center bg-stone-100">
+                        <h3 class="text-xl font-semibold text-slate-700">Days 8-15: Advanced Java & Spring Boot Core</h3>
                         <span class="text-teal-500 transform transition-transform duration-300">&#9662;</span>
                     </div>
                     <div class="card-content">
                         <p class="mb-4 text-stone-600">Deep dive into Java Concurrency, then essential Spring Boot concepts for web development.</p>
                         <div class="day-plan">
-                            <h5>Day 8 (Mon - 2 hrs)</h5>
+                            <h5>Day 8 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Java:</strong> Concurrency - Threads, Runnables, ThreadPoolExecutor.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/java-thread-pool-executor" target="_blank">Baeldung - ThreadPoolExecutor</a></li>
                             </ul>
                         </div>
                         <div class="day-plan">
-                            <h5>Day 9 (Tue - 2 hrs)</h5>
+                            <h5>Day 9 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Java:</strong> Concurrency - `synchronized`, `volatile`, Locks (ReentrantLock).</li>
-                                <li>Resource: <a href="https://www.geeksforgeeks.org/synchronized-in-java/" target="_blank">GeeksforGeeks - synchronized</a>, <a href="https://www.baeldung.com/java-volatile" target="_blank">Baeldung - volatile</a></li>
+                                <li>Resource: <a href="https://www.geeksforgeeks.org/synchronized-keyword-java/" target="_blank">GeeksforGeeks - synchronized</a>, <a href="https://www.baeldung.com/java-volatile" target="_blank">Baeldung - volatile</a></li>
                             </ul>
                         </div>
                         <div class="day-plan">
-                            <h5>Day 10 (Wed - 2 hrs)</h5>
+                            <h5>Day 10 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Spring Boot:</strong> IoC Container, Dependency Injection.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/spring-ioc-di" target="_blank">Baeldung - Spring IoC/DI</a></li>
                             </ul>
                         </div>
                         <div class="day-plan">
-                            <h5>Day 11 (Thu - 2 hrs)</h5>
+                            <h5>Day 11 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Spring Boot:</strong> Spring Beans (`@Component`, `@Service`, `@Repository`).</li>
                                 <li>Resource: <a href="https://www.baeldung.com/spring-component-repository-service-controller-annotations" target="_blank">Baeldung - Spring Annotations</a></li>
                             </ul>
                         </div>
                         <div class="day-plan">
-                            <h5>Day 12 (Fri - 2 hrs)</h5>
+                            <h5>Day 12 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Spring Boot:</strong> Spring MVC (`@RestController`, `@RequestMapping`). Build a simple REST endpoint.</li>
                                 <li>Resource: <a href="https://spring.io/guides/gs/rest-service/" target="_blank">Spring Guides - Building a RESTful Web Service</a></li>
                             </ul>
                         </div>
                         <div class="day-plan">
-                            <h5>Day 13 (Sat - 4 hrs)</h5>
+                            <h5>Day 13 (4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Spring Boot:</strong> Spring Data JPA & Hibernate basics (Entities, Repositories, Relationships).</li>
                                 <li>Resource: <a href="https://www.baeldung.com/spring-data-jpa-tutorial" target="_blank">Baeldung - Spring Data JPA</a></li>
                             </ul>
                         </div>
                         <div class="day-plan">
-                            <h5>Day 14 (Sun - 4 hrs)</h5>
+                            <h5>Day 14 (4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Spring Boot:</strong> Transaction Management (`@Transactional`). Unit Testing with JUnit and Mockito (basics).</li>
                                 <li>Resource: <a href="https://www.baeldung.com/spring-transactional" target="_blank">Baeldung - Spring @Transactional</a>, <a href="https://www.baeldung.com/junit-5" target="_blank">Baeldung - JUnit 5</a></li>
+                            </ul>
+                        </div>
+                        <div class="day-plan">
+                            <h5>Day 15 (2 hrs)</h5>
+                            <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
+                                <li><strong>Backend Project:</strong> Build a simple CRUD application with Spring Boot and Spring Data JPA.</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
                 <div class="card">
-                    <div class="card-header flex justify-between items-center bg-teal-100">
-                        <h3 class="text-xl font-semibold text-teal-700">Week 3: Microservices & LLD Essentials</h3>
+                    <div class="card-header flex justify-between items-center bg-stone-100">
+                        <h3 class="text-xl font-semibold text-slate-700">Days 16-23: LLD, Microservices & DSA Practice</h3>
                         <span class="text-teal-500 transform transition-transform duration-300">&#9662;</span>
                     </div>
                     <div class="card-content">
-                        <p class="mb-4 text-stone-600">Focus on microservices architecture, LLD patterns, and distributed system considerations. Practice a few relevant DSA problems.</p>
+                        <p class="mb-4 text-stone-600">Focus on LLD principles, essential microservices concepts, and continued DSA practice on relevant problem types.</p>
                         <div class="day-plan">
-                            <h5>Day 15 (Mon - 2 hrs)</h5>
-                            <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
-                                <li><strong>Microservices:</strong> Concepts (advantages/disadvantages, bounded contexts).</li>
-                                <li>Resource: <a href="https://microservices.io/patterns/microservices.html" target="_blank">Microservices.io - Patterns</a></li>
-                            </ul>
-                        </div>
-                        <div class="day-plan">
-                            <h5>Day 16 (Tue - 2 hrs)</h5>
-                            <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
-                                <li><strong>Microservices:</strong> Service Discovery (e.g., Eureka concepts), API Gateway (e.g., Spring Cloud Gateway concepts).</li>
-                                <li>Resource: <a href="https://www.baeldung.com/spring-cloud-eureka" target="_blank">Baeldung - Spring Cloud Eureka</a>, <a href="https://www.baeldung.com/spring-cloud-gateway" target="_blank">Baeldung - Spring Cloud Gateway</a></li>
-                            </ul>
-                        </div>
-                        <div class="day-plan">
-                            <h5>Day 17 (Wed - 2 hrs)</h5>
+                            <h5>Day 16 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>LLD:</strong> Design Patterns (Singleton, Factory, Observer - concepts and use cases).</li>
                                 <li>Resource: <a href="https://refactoring.guru/design-patterns/java" target="_blank">Refactoring.Guru - Design Patterns</a></li>
                             </ul>
                         </div>
                         <div class="day-plan">
-                            <h5>Day 18 (Thu - 2 hrs)</h5>
+                            <h5>Day 17 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>LLD:</strong> SOLID Principles.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/solid-principles" target="_blank">Baeldung - SOLID Principles</a></li>
                             </ul>
                         </div>
                         <div class="day-plan">
-                            <h5>Day 19 (Fri - 2 hrs)</h5>
+                            <h5>Day 18 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
-                                <li><strong>DSA:</strong> Trees (BST operations, traversals). Solve 2 LeetCode Medium tree problems.</li>
-                                <li>Resource: <a href="https://neetcode.io/roadmap" target="_blank">NeetCode - Trees</a></li>
-                            </ul>
-                        </div>
-                        <div class="day-plan">
-                            <h5>Day 20 (Sat - 4 hrs)</h5>
-                            <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
-                                <li><strong>LLD Project:</strong> Design a simple Parking Lot system or a Vending Machine. Focus on classes, interfaces, relationships.</li>
+                                <li><strong>LLD Project:</strong> Design a simple Parking Lot system or a Vending Machine (Class diagrams, relationships).</li>
                                 <li>Resource: <a href="https://www.youtube.com/watch?v=FINJ1pS-qHw" target="_blank">YouTube - Design Parking Lot (Scaler)</a></li>
                             </ul>
                         </div>
                         <div class="day-plan">
-                            <h5>Day 21 (Sun - 4 hrs)</h5>
+                            <h5>Day 19 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
-                                <li><strong>Microservices:</strong> Start a simple 2-service Spring Boot microservices project.</li>
-                                <li><strong>DSA:</strong> Solve 2-3 LeetCode Medium problems (e.g., Kth Smallest Element in a BST, Lowest Common Ancestor of a BST).</li>
+                                <li><strong>Microservices:</strong> Concepts (advantages/disadvantages, bounded contexts). Service Discovery (e.g., Eureka concepts).</li>
+                                <li>Resource: <a href="https://microservices.io/patterns/microservices.html" target="_blank">Microservices.io - Patterns</a>, <a href="https://www.baeldung.com/spring-cloud-eureka" target="_blank">Baeldung - Spring Cloud Eureka</a></li>
+                            </ul>
+                        </div>
+                        <div class="day-plan">
+                            <h5>Day 20 (2 hrs)</h5>
+                            <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
+                                <li><strong>Microservices:</strong> API Gateway (e.g., Spring Cloud Gateway concepts). Inter-service communication (REST, Message Queues basics).</li>
+                                <li>Resource: <a href="https://www.baeldung.com/spring-cloud-gateway" target="_blank">Baeldung - Spring Cloud Gateway</a>, <a href="https://www.baeldung.com/java-kafka" target="_blank">Baeldung - Kafka Java (Concepts)</a></li>
+                            </ul>
+                        </div>
+                        <div class="day-plan">
+                            <h5>Day 21 (4 hrs)</h5>
+                            <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
+                                <li><strong>DSA:</strong> Linked Lists (operations, two-pointers, dummy node). Solve 3-4 LeetCode Medium LL problems (e.g., Reverse Linked List, Merge Two Sorted Lists, Remove Nth Node From End of List).</li>
+                                <li>Resource: <a href="https://neetcode.io/roadmap" target="_blank">NeetCode - Linked List</a></li>
+                            </ul>
+                        </div>
+                        <div class="day-plan">
+                            <h5>Day 22 (4 hrs)</h5>
+                            <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
+                                <li><strong>DSA:</strong> Stacks & Queues. Solve 3-4 LeetCode Medium problems (e.g., Valid Parentheses, Daily Temperatures, Min Stack).</li>
+                                <li>Resource: <a href="https://leetcode.com/tag/stack/" target="_blank">LeetCode - Stack Tag</a>, <a href="https://leetcode.com/tag/queue/" target="_blank">LeetCode - Queue Tag</a></li>
+                            </ul>
+                        </div>
+                        <div class="day-plan">
+                            <h5>Day 23 (2 hrs)</h5>
+                            <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
+                                <li><strong>Backend Project:</strong> Start a very simple 2-service Spring Boot microservices project.</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
                 <div class="card">
-                    <div class="card-header flex justify-between items-center bg-teal-100">
-                        <h3 class="text-xl font-semibold text-teal-700">Week 4: Advanced Backend & Interview Prep</h3>
+                    <div class="card-header flex justify-between items-center bg-stone-100">
+                        <h3 class="text-xl font-semibold text-slate-700">Days 24-30: Java Features, DSA, Behavioral & Review</h3>
                         <span class="text-teal-500 transform transition-transform duration-300">&#9662;</span>
                     </div>
                     <div class="card-content">
-                        <p class="mb-4 text-stone-600">Consolidate backend knowledge, focus on interview-specific topics, and conduct a mock interview.</p>
+                        <p class="mb-4 text-stone-600">Focus on modern Java features, basic Dynamic Programming, refining your behavioral stories, and crucial mock interviews.</p>
                         <div class="day-plan">
-                            <h5>Day 22 (Mon - 2 hrs)</h5>
+                            <h5>Day 24 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
-                                <li><strong>Advanced Java:</strong> Stream API, Lambda Expressions.</li>
-                                <li>Resource: <a href="https://www.baeldung.com/java-8-streams-introduction" target="_blank">Baeldung - Java Stream API</a></li>
+                                <li><strong>Java Features:</strong> Java 8 Stream API, Lambda Expressions.</li>
+                                <li>Resource: <a href="https://www.baeldung.com/java-8-streams-introduction" target="_blank">Baeldung - Java 8 Streams</a>, <a href="https://www.baeldung.com/java-lambda-expressions" target="_blank">Baeldung - Lambda Expressions</a></li>
                             </ul>
                         </div>
                         <div class="day-plan">
-                            <h5>Day 23 (Tue - 2 hrs)</h5>
+                            <h5>Day 25 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
-                                <li><strong>Spring Boot:</strong> Spring Security (Authentication, Authorization basics, JWT concepts).</li>
-                                <li>Resource: <a href="https://www.baeldung.com/spring-security-basics" target="_blank">Baeldung - Spring Security Basics</a></li>
+                                <li><strong>Java Features:</strong> Overview of key features in Java 11, 17, and 21 (e.g., `var`, Text Blocks, Records, Pattern Matching).</li>
+                                <li>Resource: <a href="https://www.baeldung.com/java-11-features" target="_blank">Baeldung - Java 11</a>, <a href="https://www.baeldung.com/java-17-features" target="_blank">Baeldung - Java 17</a>, <a href="https://www.baeldung.com/java-21-features" target="_blank">Baeldung - Java 21</a></li>
                             </ul>
                         </div>
                         <div class="day-plan">
-                            <h5>Day 24 (Wed - 2 hrs)</h5>
+                            <h5>Day 26 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
-                                <li><strong>Microservices:</strong> Inter-service communication (REST, Message Queues - basics of Kafka/RabbitMQ).</li>
-                                <li>Resource: <a href="https://www.baeldung.com/java-kafka" target="_blank">Baeldung - Kafka Java</a> (Concepts, not full implementation)</li>
-                            </ul>
-                        </div>
-                        <div class="day-plan">
-                            <h5>Day 25 (Thu - 2 hrs)</h5>
-                            <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
-                                <li><strong>DSA:</strong> Dynamic Programming Intro (Fibonacci, Climbing Stairs). Solve 2 LeetCode Easy/Medium DP.</li>
+                                <li><strong>DSA:</strong> Dynamic Programming Intro (Memoization vs Tabulation). Classic DP: Fibonacci, Climbing Stairs. Solve 2 LeetCode Easy/Medium DP.</li>
                                 <li>Resource: <a href="https://neetcode.io/roadmap" target="_blank">NeetCode - Dynamic Programming</a></li>
                             </ul>
                         </div>
                         <div class="day-plan">
-                            <h5>Day 26 (Fri - 2 hrs)</h5>
+                            <h5>Day 27 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
-                                <li><strong>Behavioral:</strong> Review your top 3 STAR stories. Focus on confident, concise delivery.</li>
-                                <li>Resource: <a href="https://www.indeed.com/career-advice/interviewing/star-method-interview-questions" target="_blank">Indeed - STAR Method Guide</a></li>
+                                <li><strong>Behavioral:</strong> Review your top 3-5 STAR stories. Focus on confident, concise delivery.</li>
+                                <li>Resource: <a href="https://www.indeed.com/career-advice/interviewing/the-star-method/" target="_blank">Indeed - STAR Method Guide</a></li>
                             </ul>
                         </div>
                         <div class="day-plan">
-                            <h5>Day 27 (Sat - 4 hrs)</h5>
+                            <h5>Day 28 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
-                                <li><strong>Mock Interview:</strong> Conduct one full mock coding interview (45-60 min) with a peer or on Pramp.</li>
-                                <li><strong>Backend Project:</strong> Finalize a core feature in your microservices project.</li>
+                                <li><strong>Backend Project:</strong> Add a simple REST endpoint to one of your microservices. Practice explaining your LLD design.</li>
                             </ul>
                         </div>
                         <div class="day-plan">
-                            <h5>Day 28 (Sun - 4 hrs)</h5>
+                            <h5>Day 29 (4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
-                                <li><strong>Review:</strong> All Core Java, Spring Boot, Microservices, and LLD concepts.</li>
-                                <li><strong>Prep:</strong> Practice explaining your LLD project (e.g., Parking Lot) and your microservices project.</li>
+                                <li><strong>Mock Interview:</strong> Conduct one full mock coding interview (45-60 min) with a peer or on Pramp. Focus on explaining your thought process.</li>
+                                <li>Resource: <a href="https://pramp.com/" target="_blank">Pramp</a></li>
+                            </ul>
+                        </div>
+                        <div class="day-plan">
+                            <h5>Day 30 (4 hrs)</h5>
+                            <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
+                                <li><strong>Review:</strong> Rapid review of all Core Java, Spring Boot, Microservices, LLD, and essential DSA concepts.</li>
+                                <li><strong>Prep:</strong> Light behavioral review and prepare questions to ask the interviewer.</li>
                             </ul>
                         </div>
                     </div>
@@ -1840,18 +1851,25 @@
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('.nav-link');
 
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2 // Trigger when 20% of the section is visible
+            };
+
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         navLinks.forEach(link => {
                             link.classList.remove('active');
-                            if (link.getAttribute('href').substring(1) === entry.target.id) {
-                                link.classList.add('active');
-                            }
                         });
+                        const currentNavLink = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+                        if (currentNavLink) {
+                            currentNavLink.classList.add('active');
+                        }
                     }
                 });
-            }, { threshold: 0.5 });
+            }, observerOptions);
 
             sections.forEach(section => {
                 observer.observe(section);
