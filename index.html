@@ -27,7 +27,7 @@
             border-radius: 0.75rem;
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
             transition: all 0.3s ease-in-out;
-            border: 1px solid #e7e5e4; /* stone-200 */
+            border: 2px solid #14b8a6; /* teal-500 */ /* Changed to consistent green border */
         }
         .card:hover {
             transform: translateY(-5px);
@@ -83,14 +83,21 @@
             padding: 0.75rem;
             background-color: #fafaf9; /* stone-50 */
             border-radius: 0.5rem;
+            display: flex; /* Use flex to align checkbox and text */
+            align-items: center; /* Vertically align items */
+            gap: 0.5rem; /* Space between checkbox and text */
+        }
+        .day-plan.completed {
+            background-color: #d1fae5; /* Light green for completed days */
         }
         .day-plan:last-child {
             margin-bottom: 0;
         }
         .day-plan h5 {
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0; /* Adjust margin as it's now flex item */
             color: #44403c; /* stone-700 */
+            flex-grow: 1; /* Allow text to take available space */
         }
         .day-plan li {
             margin-bottom: 0.25rem;
@@ -101,6 +108,25 @@
         }
         .day-plan a:hover {
             text-decoration: underline;
+        }
+        .progress-bar-container {
+            width: 100%;
+            background-color: #e7e5e4; /* stone-200 */
+            border-radius: 0.5rem;
+            height: 1.5rem;
+            margin-top: 1.5rem;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #14b8a6; /* teal-500 */
+            border-radius: 0.5rem;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            line-height: 1.5rem;
+            transition: width 0.5s ease-in-out;
         }
     </style>
 </head>
@@ -137,6 +163,11 @@
                 <p class="mt-4 max-w-3xl mx-auto text-stone-700">This accelerated 1-month plan is designed for immediate interviews, focusing on the most critical and frequently asked topics in Java, Spring Boot, Microservices, LLD, and essential DSA. It prioritizes breadth over depth, ensuring you're ready to discuss foundational and intermediate concepts and solve common coding challenges under time pressure. This plan assumes you start tomorrow for 30 days!</p>
             </div>
 
+            <!-- Progress Bar for Fast Track Section -->
+            <div class="progress-bar-container mb-8">
+                <div id="fast-track-progress-bar" class="progress-bar">0%</div>
+            </div>
+
             <div class="grid md:grid-cols-1 lg:grid-cols-1 gap-8">
                 <div class="card">
                     <div class="card-header flex justify-between items-center bg-stone-100">
@@ -145,52 +176,67 @@
                     </div>
                     <div class="card-content">
                         <p class="mb-4 text-stone-600">Focus on refreshing core Java, OOPs, and essential DSA concepts. Practice easy/medium LeetCode problems.</p>
-                        <div class="day-plan">
+                        <div class="day-plan" id="fast-track-day-1">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="1">
                             <h5>Day 1 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Java:</strong> JVM, JRE, JDK, Classloaders. How Java compiles & runs.</li>
+                                <li>Coding Task: Write a simple 'Hello World' program and understand its execution flow from source to JVM.</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/jvm-jre-jdk-java-overview/" target="_blank">GeeksforGeeks - JVM, JRE, JDK</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" id="fast-track-day-2">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="2">
                             <h5>Day 2 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Java:</strong> OOPs (Encapsulation, Abstraction, Inheritance, Polymorphism).</li>
+                                <li>Coding Task: Create simple Java classes demonstrating encapsulation and abstraction principles.</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/java-oops-concepts/" target="_blank">GeeksforGeeks - Java OOPs</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
-                            <h5>Day 3 (2 hrs)</h5>
+                        <div class="day-plan" id="fast-track-day-3">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="3">
+                            <h5>Day 3 (4 hrs)</h5> <!-- Increased to 4 hours -->
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>DSA:</strong> Time & Space Complexity (Big O). Arrays basics.</li>
+                                <li><strong>DSA:</strong> Overview of all major Data Structures and Algorithms with simple examples.</li>
+                                <li>Coding Task: Implement array traversal and element search, then discuss its time complexity.</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/understanding-time-and-space-complexity-in-java/" target="_blank">GeeksforGeeks - Complexity</a>, <a href="https://neetcode.io/roadmap" target="_blank">NeetCode - Arrays & Hashing</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" id="fast-track-day-4">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="4">
                             <h5>Day 4 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Java:</strong> Exception Handling (`try-catch-finally`, custom exceptions).</li>
+                                <li>Coding Task: Implement a custom exception and demonstrate its usage within a `try-catch-finally` block.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/java-exceptions" target="_blank">Baeldung - Java Exceptions</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" id="fast-track-day-5">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="5">
                             <h5>Day 5 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>DSA:</strong> Strings basics. Solve 2-3 LeetCode Easy problems (e.g., Valid Anagram, First Unique Character in a String).</li>
+                                <li>Coding Task: Write a function to check if two strings are anagrams.</li>
                                 <li>Resource: <a href="https://leetcode.com/tag/string/" target="_blank">LeetCode - String Tag</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" id="fast-track-day-6">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="6">
                             <h5>Day 6 (4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Java:</strong> Collections Framework (`List`, `Set`, `Map` interfaces, basic implementations).</li>
+                                <li>Coding Task: Implement a simple program demonstrating the basic usage of `ArrayList` and `HashMap`.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/java-collections-tutorial" target="_blank">Baeldung - Java Collections</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" id="fast-track-day-7">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="7">
                             <h5>Day 7 (4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>DSA:</strong> Hash Maps/Sets (usage, `hashCode`, `equals`). Solve 2-3 LeetCode Medium problems (e.g., Two Sum, Contains Duplicate, Longest Substring Without Repeating Characters).</li>
+                                <li>Coding Task: Use a `HashMap` to count the frequency of elements in an array.</li>
                                 <li>Resource: <a href="https://neetcode.io/roadmap" target="_blank">NeetCode - Hash Maps</a></li>
                             </ul>
                         </div>
@@ -204,59 +250,75 @@
                     </div>
                     <div class="card-content">
                         <p class="mb-4 text-stone-600">Deep dive into Java Concurrency, then essential Spring Boot concepts for web development.</p>
-                        <div class="day-plan">
+                        <div class="day-plan" id="fast-track-day-8">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="8">
                             <h5>Day 8 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Java:</strong> Concurrency - Threads, Runnables, ThreadPoolExecutor.</li>
+                                <li>Coding Task: Create a simple multithreaded application using `ThreadPoolExecutor` to process a list of tasks.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/java-thread-pool-executor" target="_blank">Baeldung - ThreadPoolExecutor</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" id="fast-track-day-9">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="9">
                             <h5>Day 9 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Java:</strong> Concurrency - `synchronized`, `volatile`, Locks (ReentrantLock).</li>
+                                <li>Coding Task: Implement a shared counter protected by `synchronized` and `ReentrantLock` to compare their usage.</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/synchronized-keyword-java/" target="_blank">GeeksforGeeks - synchronized</a>, <a href="https://www.baeldung.com/java-volatile" target="_blank">Baeldung - volatile</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" id="fast-track-day-10">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="10">
                             <h5>Day 10 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Spring Boot:</strong> IoC Container, Dependency Injection.</li>
+                                <li>Coding Task: Create two Spring components and demonstrate `@Autowired` dependency injection.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/spring-ioc-di" target="_blank">Baeldung - Spring IoC/DI</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" id="fast-track-day-11">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="11">
                             <h5>Day 11 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Spring Boot:</strong> Spring Beans (`@Component`, `@Service`, `@Repository`).</li>
+                                <li>Coding Task: Define beans using `@Service` and `@Repository` annotations and understand their roles.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/spring-component-repository-service-controller-annotations" target="_blank">Baeldung - Spring Annotations</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" id="fast-track-day-12">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="12">
                             <h5>Day 12 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Spring Boot:</strong> Spring MVC (`@RestController`, `@RequestMapping`). Build a simple REST endpoint.</li>
+                                <li>Coding Task: Create a basic Spring Boot REST controller with a GET endpoint.</li>
                                 <li>Resource: <a href="https://spring.io/guides/gs/rest-service/" target="_blank">Spring Guides - Building a RESTful Web Service</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" id="fast-track-day-13">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="13">
                             <h5>Day 13 (4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Spring Boot:</strong> Spring Data JPA & Hibernate basics (Entities, Repositories, Relationships).</li>
+                                <li>Coding Task: Define a JPA `@Entity` and a `JpaRepository` interface for a simple data model.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/spring-data-jpa-tutorial" target="_blank">Baeldung - Spring Data JPA</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" id="fast-track-day-14">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="14">
                             <h5>Day 14 (4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Spring Boot:</strong> Transaction Management (`@Transactional`). Unit Testing with JUnit and Mockito (basics).</li>
+                                <li>Coding Task: Write a simple JUnit test for a Spring service, mocking its dependencies using Mockito.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/spring-transactional" target="_blank">Baeldung - Spring @Transactional</a>, <a href="https://www.baeldung.com/junit-5" target="_blank">Baeldung - JUnit 5</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" id="fast-track-day-15">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="15">
                             <h5>Day 15 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Backend Project:</strong> Build a simple CRUD application with Spring Boot and Spring Data JPA.</li>
+                                <li>Coding Task: Implement the CRUD operations (Create, Read, Update, Delete) for a basic entity.</li>
                             </ul>
                         </div>
                     </div>
@@ -269,59 +331,75 @@
                     </div>
                     <div class="card-content">
                         <p class="mb-4 text-stone-600">Focus on LLD principles, essential microservices concepts, and continued DSA practice on relevant problem types.</p>
-                        <div class="day-plan">
+                        <div class="day-plan" id="fast-track-day-16">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="16">
                             <h5>Day 16 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>LLD:</strong> Design Patterns (Singleton, Factory, Observer - concepts and use cases).</li>
+                                <li>Coding Task: Implement a simple Singleton and Factory pattern in Java.</li>
                                 <li>Resource: <a href="https://refactoring.guru/design-patterns/java" target="_blank">Refactoring.Guru - Design Patterns</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" id="fast-track-day-17">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="17">
                             <h5>Day 17 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>LLD:</strong> SOLID Principles.</li>
+                                <li>Coding Task: Refactor a small piece of code to adhere to the Single Responsibility Principle (SRP).</li>
                                 <li>Resource: <a href="https://www.baeldung.com/solid-principles" target="_blank">Baeldung - SOLID Principles</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" id="fast-track-day-18">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="18">
                             <h5>Day 18 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>LLD Project:</strong> Design a simple Parking Lot system or a Vending Machine (Class diagrams, relationships).</li>
+                                <li>Coding Task: Draw class diagrams for a simple Parking Lot system.</li>
                                 <li>Resource: <a href="https://www.youtube.com/watch?v=FINJ1pS-qHw" target="_blank">YouTube - Design Parking Lot (Scaler)</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" id="fast-track-day-19">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="19">
                             <h5>Day 19 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Microservices:</strong> Concepts (advantages/disadvantages, bounded contexts). Service Discovery (e.g., Eureka concepts).</li>
+                                <li>Coding Task: Sketch a high-level diagram showing two microservices interacting via a Service Discovery mechanism.</li>
                                 <li>Resource: <a href="https://microservices.io/patterns/microservices.html" target="_blank">Microservices.io - Patterns</a>, <a href="https://www.baeldung.com/spring-cloud-eureka" target="_blank">Baeldung - Spring Cloud Eureka</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" id="fast-track-day-20">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="20">
                             <h5>Day 20 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Microservices:</strong> API Gateway (e.g., Spring Cloud Gateway concepts). Inter-service communication (REST, Message Queues basics).</li>
+                                <li>Coding Task: Outline a simple Spring Cloud Gateway configuration for routing requests to a service.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/spring-cloud-gateway" target="_blank">Baeldung - Spring Cloud Gateway</a>, <a href="https://www.baeldung.com/java-kafka" target="_blank">Baeldung - Kafka Java (Concepts)</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" id="fast-track-day-21">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="21">
                             <h5>Day 21 (4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>DSA:</strong> Linked Lists (operations, two-pointers, dummy node). Solve 3-4 LeetCode Medium LL problems (e.g., Reverse Linked List, Merge Two Sorted Lists, Remove Nth Node From End of List).</li>
+                                <li>Coding Task: Implement a function to reverse a singly linked list.</li>
                                 <li>Resource: <a href="https://neetcode.io/roadmap" target="_blank">NeetCode - Linked List</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" id="fast-track-day-22">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="22">
                             <h5>Day 22 (4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>DSA:</strong> Stacks & Queues. Solve 3-4 LeetCode Medium problems (e.g., Valid Parentheses, Daily Temperatures, Min Stack).</li>
+                                <li>Coding Task: Implement a basic Stack using an `ArrayList` and practice using it for parenthesis validation.</li>
                                 <li>Resource: <a href="https://leetcode.com/tag/stack/" target="_blank">LeetCode - Stack Tag</a>, <a href="https://leetcode.com/tag/queue/" target="_blank">LeetCode - Queue Tag</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" id="fast-track-day-23">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="23">
                             <h5>Day 23 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Backend Project:</strong> Start a very simple 2-service Spring Boot microservices project.</li>
+                                <li>Coding Task: Create two separate Spring Boot projects and configure them to run independently.</li>
                             </ul>
                         </div>
                     </div>
@@ -334,48 +412,58 @@
                     </div>
                     <div class="card-content">
                         <p class="mb-4 text-stone-600">Focus on modern Java features, basic Dynamic Programming, refining your behavioral stories, and crucial mock interviews.</p>
-                        <div class="day-plan">
+                        <div class="day-plan" id="fast-track-day-24">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="24">
                             <h5>Day 24 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Java Features:</strong> Java 8 Stream API, Lambda Expressions.</li>
+                                <li>Coding Task: Write a Java program using Stream API to filter, map, and collect data from a list.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/java-8-streams-introduction" target="_blank">Baeldung - Java 8 Streams</a>, <a href="https://www.baeldung.com/java-lambda-expressions" target="_blank">Baeldung - Lambda Expressions</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" id="fast-track-day-25">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="25">
                             <h5>Day 25 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Java Features:</strong> Overview of key features in Java 11, 17, and 21 (e.g., `var`, Text Blocks, Records, Pattern Matching).</li>
+                                <li>Coding Task: Write small code snippets demonstrating the usage of `var` or Text Blocks.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/java-11-features" target="_blank">Baeldung - Java 11</a>, <a href="https://www.baeldung.com/java-17-features" target="_blank">Baeldung - Java 17</a>, <a href="https://www.baeldung.com/java-21-features" target="_blank">Baeldung - Java 21</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" id="fast-track-day-26">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="26">
                             <h5>Day 26 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>DSA:</strong> Dynamic Programming Intro (Memoization vs Tabulation). Classic DP: Fibonacci, Climbing Stairs. Solve 2 LeetCode Easy/Medium DP.</li>
+                                <li>Coding Task: Implement Fibonacci sequence using both recursive (with memoization) and iterative (tabulation) approaches.</li>
                                 <li>Resource: <a href="https://neetcode.io/roadmap" target="_blank">NeetCode - Dynamic Programming</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" id="fast-track-day-27">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="27">
                             <h5>Day 27 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Behavioral:</strong> Review your top 3-5 STAR stories. Focus on confident, concise delivery.</li>
-                                <li>Resource: <a href="https://www.indeed.com/career-advice/interviewing/the-star-method/" target="_blank">Indeed - STAR Method Guide</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" id="fast-track-day-28">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="28">
                             <h5>Day 28 (2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Backend Project:</strong> Add a simple REST endpoint to one of your microservices. Practice explaining your LLD design.</li>
+                                <li>Coding Task: Implement a new GET or POST endpoint in one of your microservices.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" id="fast-track-day-29">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="29">
                             <h5>Day 29 (4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Mock Interview:</strong> Conduct one full mock coding interview (45-60 min) with a peer or on Pramp. Focus on explaining your thought process.</li>
                                 <li>Resource: <a href="https://pramp.com/" target="_blank">Pramp</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" id="fast-track-day-30">
+                            <input type="checkbox" class="day-checkbox" data-phase-id="fast-track" data-overall-day-id="30">
                             <h5>Day 30 (4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li><strong>Review:</strong> Rapid review of all Core Java, Spring Boot, Microservices, LLD, and essential DSA concepts.</li>
@@ -403,60 +491,77 @@
                 </div>
             </div>
 
+            <!-- Progress Bar for Phase 1 Section -->
+            <div class="progress-bar-container mb-8">
+                <div id="phase1-progress-bar" class="progress-bar">0%</div>
+            </div>
+
             <div class="grid md:grid-cols-1 lg:grid-cols-1 gap-8">
                 <!-- Core Java & OOPs -->
                 <div class="card">
                     <div class="card-header flex justify-between items-center">
-                        <h3 class="text-xl font-semibold text-slate-700">Core Java, OOPs & Behavioral Prep (Phase 1)</h3>
+                        <h3 class="text-xl font-semibold text-slate-700">Core Java, OOPs & Behavioral Prep</h3> <!-- Removed "(Phase 1)" -->
                         <span class="text-teal-500 transform transition-transform duration-300">&#9662;</span>
                     </div>
                     <div class="card-content">
                         <p class="mb-4 text-stone-600">Allocate ~3 hours/week for Core Java & Behavioral Prep. Focus on understanding the "why" behind these concepts and drafting your impactful stories.</p>
                         <!-- Week 1 -->
                         <h4 class="font-semibold mb-2 text-stone-700">Week 1: Java Basics & OOPs, Behavioral (STAR Intro)</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="31">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 1 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Java Basics: JVM, JRE, JDK, Classloaders. How Java compiles & runs.</li>
+                                <li>Coding Task: Run a simple Java program and articulate its execution steps through JVM.</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/jvm-jre-jdk-java-overview/" target="_blank">GeeksforGeeks - JVM, JRE, JDK</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="32">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 2 (Tue - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Memory Management: Heap vs Stack, basics of Garbage Collection.</li>
+                                <li>Coding Task: Write a small program to observe memory usage (e.g., creating many objects) and discuss Heap vs Stack.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/java-jvm-memory-model/" target="_blank">Baeldung - JVM Memory Model</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="33">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 3 (Wed - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>OOPs: Encapsulation & Abstraction (concepts + simple code examples).</li>
+                                <li>Coding Task: Implement a class with private fields and public getters/setters to demonstrate encapsulation.</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/encapsulation-in-java/" target="_blank">GeeksforGeeks - Encapsulation</a>, <a href="https://www.geeksforgeeks.org/abstraction-in-java/" target="_blank">GeeksforGeeks - Abstraction</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="34">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 4 (Thu - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>OOPs: Inheritance & Polymorphism (concepts + simple code examples).</li>
+                                <li>Coding Task: Create a base class and a derived class to illustrate inheritance and method overriding for polymorphism.</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/inheritance-in-java/" target="_blank">GeeksforGeeks - Inheritance</a>, <a href="https://www.geeksforgeeks.org/polymorphism-in-java/" target="_blank">GeeksforGeeks - Polymorphism</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="35">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 5 (Fri - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>`final`, `static`, `abstract` keywords. Interfaces vs Abstract Classes.</li>
+                                <li>Coding Task: Implement a simple interface and an abstract class, demonstrating their usage differences.</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/abstract-class-vs-interface-in-java/" target="_blank">GeeksforGeeks - Abstract vs Interface</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="36">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 6 (Sat - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Behavioral: Intro to STAR Method. Brainstorm 2-3 significant accomplishments.</li>
                                 <li>Resource: <a href="https://www.indeed.com/career-advice/interviewing/the-star-method/" target="_blank">Indeed - STAR Method Guide</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="37">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 7 (Sun - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Review all Java/OOPs topics from Week 1. Draft 2 STAR stories using the template.</li>
@@ -465,49 +570,61 @@
                         </div>
                         <!-- Week 2 -->
                         <h4 class="font-semibold mt-6 mb-2 text-stone-700">Week 2: Exception Handling & Collections Intro, Behavioral</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="38">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 8 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Exception Handling: `try-catch-finally`, `throws`, checked/unchecked.</li>
+                                <li>Coding Task: Write code that uses `try-with-resources` for file handling to ensure proper resource management.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/java-exceptions" target="_blank">Baeldung - Java Exceptions</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="39">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 9 (Tue - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Custom Exceptions. Best practices for exception handling.</li>
+                                <li>Coding Task: Define and throw a custom checked exception in a simple scenario.</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/custom-exception-in-java/" target="_blank">GeeksforGeeks - Custom Exceptions</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="40">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 10 (Wed - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Generics: Type safety, wildcards.</li>
+                                <li>Coding Task: Implement a simple generic class (e.g., a `Box<T>`) and use it with different types.</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/generics-in-java/" target="_blank">GeeksforGeeks - Generics</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="41">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 11 (Thu - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Collections Framework: `List`, `Set`, `Map` interfaces.</li>
+                                <li>Coding Task: Write a program that uses `ArrayList`, `HashSet`, and `HashMap` for basic data storage and retrieval.</li>
                                 <li>Resource: <a href="https://www.javatpoint.com/collections-in-java" target="_blank">JavaTpoint - Collections Overview</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="42">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 12 (Fri - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Basic `ArrayList`, `HashSet`, `HashMap` usage and complexity.</li>
+                                <li>Coding Task: Implement a custom class and correctly override `equals()` and `hashCode()`.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/java-collections-tutorial" target="_blank">Baeldung - Java Collections</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="43">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 13 (Sat - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Behavioral: Brainstorm 2-3 more challenging experiences (e.g., conflict, failure).</li>
                                 <li>Draft 2 more STAR stories.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="44">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 14 (Sun - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Review all Java/Collections topics from Week 2.</li>
@@ -527,42 +644,53 @@
                         <p class="mb-4 text-stone-600">Allocate ~7 hours/week for DSA and ~5 hours/week for System Design. Focus on understanding patterns, optimizing, and outlining designs.</p>
                         <!-- Week 3 -->
                         <h4 class="font-semibold mb-2 text-stone-700">Week 3: DSA - Complexity, Arrays & Strings; SD - Fundamentals</h4>
-                        <div class="day-plan">
-                            <h5>Day 15 (Mon - 2 hrs)</h5>
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="45">
+                            <input type="checkbox" class="day-checkbox">
+                            <h5>Day 15 (Mon - 4 hrs)</h5> <!-- Increased to 4 hours -->
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
-                                <li>DSA: Time & Space Complexity (Big O).</li>
+                                <li><strong>DSA:</strong> Time & Space Complexity (Big O).</li>
+                                <li><strong>DSA:</strong> Overview of all major Data Structures and Algorithms with simple examples.</li>
+                                <li>Coding Task: Analyze the time and space complexity of common array operations (e.g., insertion, deletion).</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/analysis-of-algorithms-set-3-asymptotic-notations/" target="_blank">GeeksforGeeks - Big O</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="46">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 16 (Tue - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Arrays - Basic operations (traversal, search, insert, delete).</li>
+                                <li>Coding Task: Implement a function to find an element in an unsorted array.</li>
                                 <li>Resource: <a href="https://neetcode.io/roadmap" target="_blank">NeetCode - Arrays & Hashing</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="47">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 17 (Wed - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Strings - Palindromes, Anagrams. Solve 2-3 LeetCode Easy problems.</li>
+                                <li>Coding Task: Write a function to check if a given string is a palindrome.</li>
                                 <li>Resource: <a href="https://leetcode.com/tag/string/" target="_blank">LeetCode - String Tag</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="48">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 18 (Thu - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>System Design: Core Principles (Scalability, Reliability, Availability, Efficiency).</li>
                                 <li>Resource: <a href="https://www.educative.io/courses/grokking-the-system-design-interview" target="_blank">Grokking System Design Interview (Concepts)</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="49">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 19 (Fri - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Techniques - Two Pointers, Sliding Window. Solve 2 LeetCode Medium problems.</li>
+                                <li>Coding Task: Solve a simple Two Pointers problem (e.g., finding a pair with a given sum in a sorted array).</li>
                                 <li>Resource: <a href="https://neetcode.io/roadmap" target="_blank">NeetCode - Two Pointers / Sliding Window</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="50">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 20 (Sat - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Solve 3-4 LeetCode Easy/Medium Arrays/Strings problems. (e.g., Two Sum, Valid Anagram)</li>
@@ -570,7 +698,8 @@
                                 <li>Resource: <a href="https://leetcode.com/" target="_blank">LeetCode</a>, <a href="https://www.geeksforgeeks.org/non-functional-requirements-in-software-engineering/" target="_blank">GeeksforGeeks - NFRs</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="51">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 21 (Sun - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Review all Arrays/Strings problems. Understand multiple approaches.</li>
@@ -580,42 +709,52 @@
                         </div>
                         <!-- Week 4 -->
                         <h4 class="font-semibold mt-6 mb-2 text-stone-700">Week 4: DSA - Linked Lists; SD - Estimation</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="52">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 22 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Linked Lists - Single, Doubly, Circular (concepts).</li>
+                                <li>Coding Task: Implement a basic singly linked list with insertion and deletion operations.</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/data-structures-linked-list/" target="_blank">GeeksforGeeks - Linked List</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="53">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 23 (Tue - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Linked Lists - Operations (Insert, Delete, Reverse). Solve 2 LeetCode Easy problems.</li>
+                                <li>Coding Task: Practice reversing a linked list iteratively.</li>
                                 <li>Resource: <a href="https://leetcode.com/tag/linked-list/" target="_blank">LeetCode - Linked List Tag</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="54">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 24 (Wed - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Linked Lists - Fast & Slow Pointers (Floyd's Cycle Finding). Solve 1 LeetCode Medium problem.</li>
+                                <li>Coding Task: Implement Floyd's Cycle Finding algorithm to detect a cycle in a linked list.</li>
                                 <li>Resource: <a href="https://neetcode.io/roadmap" target="_blank">NeetCode - Linked List</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="55">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 25 (Thu - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>System Design: Traffic Estimation (QPS, storage, bandwidth).</li>
                                 <li>Resource: <a href="https://systemdesign.one/system-design-basics/#System-Design-Fundamentals" target="_blank">SystemDesign.one - Fundamentals</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="56">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 26 (Fri - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Linked Lists - Dummy Node trick. Solve 1 LeetCode Medium problem.</li>
+                                <li>Coding Task: Solve a linked list problem (e.g., removing the Nth node from end) using a dummy node.</li>
                                 <li>Resource: <a href="https://www.youtube.com/watch?v=FjI5jY1Jt-s" target="_blank">YouTube - Dummy Node Trick (Techdose)</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="57">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 27 (Sat - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Solve 3-4 LeetCode Easy/Medium Linked List problems (e.g., Reverse Linked List, Merge Two Sorted Lists).</li>
@@ -623,7 +762,8 @@
                                 <li>Resource: <a href="https://www.youtube.com/watch?v=R9Q_n-v5y5U" target="_blank">YouTube - Pastebin System Design (Byte by Byte)</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="58">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 28 (Sun - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Review all Linked List problems.</li>
@@ -633,42 +773,52 @@
                         </div>
                         <!-- Week 5 -->
                         <h4 class="font-semibold mt-6 mb-2 text-stone-700">Week 5: DSA - Stacks, Queues, Hash Maps/Sets; SD - Basic Components</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="59">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 29 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Stacks (LIFO), Queues (FIFO), Deque (concepts).</li>
+                                <li>Coding Task: Implement a Stack using `ArrayDeque` and a Queue using `LinkedList`.</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/stack-data-structure/" target="_blank">GeeksforGeeks - Stack</a>, <a href="https://www.geeksforgeeks.org/queue-data-structure/" target="_blank">GeeksforGeeks - Queue</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="60">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 30 (Tue - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Hash Maps/Sets: Collisions, `hashCode()`, `equals()`. Solve 2 LeetCode Easy problems.</li>
+                                <li>Coding Task: Use a `HashMap` to group strings that are anagrams of each other.</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/hashset-vs-hashmap-vs-hashtable-in-java/" target="_blank">GeeksforGeeks - HashMap vs HashSet</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="61">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 31 (Wed - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Solve 2 LeetCode Medium problems using Stacks/Queues (e.g., Valid Parentheses, Daily Temperatures).</li>
+                                <li>Coding Task: Implement a solution for "Valid Parentheses" using a stack.</li>
                                 <li>Resource: <a href="https://leetcode.com/tag/stack/" target="_blank">LeetCode - Stack Tag</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="62">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 32 (Thu - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>System Design: Databases (SQL vs NoSQL introduction).</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/difference-between-sql-and-nosql/" target="_blank">GeeksforGeeks - SQL vs NoSQL</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="63">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 33 (Fri - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Solve 2-3 LeetCode Medium problems using Hash Maps/Sets (e.g., Group Anagrams, Longest Substring Without Repeating Characters).</li>
+                                <li>Coding Task: Solve "Longest Substring Without Repeating Characters" using a sliding window and a hash set/map.</li>
                                 <li>Resource: <a href="https://leetcode.com/tag/hash-table/" target="_blank">LeetCode - Hash Table Tag</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="64">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 34 (Sat - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Review all Stacks, Queues, Hash Map problems.</li>
@@ -676,7 +826,8 @@
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/cache-memory-and-its-mapping-techniques/" target="_blank">GeeksforGeeks - Caching</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="65">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 35 (Sun - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>System Design: CDNs (Content Delivery Networks). Read about their purpose and benefits.</li>
@@ -686,42 +837,52 @@
                         </div>
                         <!-- Week 6 -->
                         <h4 class="font-semibold mt-6 mb-2 text-stone-700">Week 6: DSA - Trees, Recursion Intro; SD - HLD Review</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="66">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 36 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Trees - Binary Tree, BST (concepts).</li>
+                                <li>Coding Task: Implement a basic Binary Tree node structure.</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/binary-tree-set-1-introduction/" target="_blank">GeeksforGeeks - Binary Tree</a>, <a href="https://www.geeksforgeeks.org/binary-search-tree-data-structure/" target="_blank">GeeksforGeeks - BST</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="67">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 37 (Tue - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Tree Traversal (Inorder, Preorder, Postorder - Recursive). Solve 2 LeetCode Easy tree problems.</li>
+                                <li>Coding Task: Write recursive functions for inorder, preorder, and postorder tree traversals.</li>
                                 <li>Resource: <a href="https://neetcode.io/roadmap" target="_blank">NeetCode - Trees</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="68">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 38 (Wed - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Tree Traversal (BFS - Level Order). Solve 1 LeetCode Medium tree problem.</li>
+                                <li>Coding Task: Implement Level Order Traversal for a Binary Tree using a Queue.</li>
                                 <li>Resource: <a href="https://www.youtube.com/watch?v=pcM6K_C-kH0" target="_blank">YouTube - BFS Tree Traversal (NeetCode)</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="69">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 39 (Thu - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>System Design: High-Level Design (HLD) Review. Components, communication flows.</li>
                                 <li>Resource: Review your notes from previous SD weeks.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="70">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 40 (Fri - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Heap - Min/Max Priority Queue (concepts). Solve 1-2 LeetCode Easy/Medium Heap problems.</li>
+                                <li>Coding Task: Use Java's `PriorityQueue` to simulate a Min-Heap and Max-Heap.</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/introduction-to-heap-data-structure/" target="_blank">GeeksforGeeks - Heap</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="71">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 41 (Sat - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Solve 3-4 LeetCode Medium Tree/Heap problems (e.g., Kth Largest Element in a Stream, Balanced Binary Tree).</li>
@@ -729,7 +890,8 @@
                                 <li>Resource: <a href="https://www.youtube.com/watch?v=xpZqA0w3w9o" target="_blank">YouTube - Design TinyURL (System Design Interview)</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="72">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 42 (Sun - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Review all Tree/Heap problems. Consolidate understanding of basic data structures.</li>
@@ -742,21 +904,23 @@
                 <!-- AI for Java: Introduction (Phase 1) -->
                 <div class="card">
                     <div class="card-header flex justify-between items-center">
-                        <h3 class="text-xl font-semibold text-slate-700">AI for Java: The Big Picture (Phase 1)</h3>
+                        <h3 class="text-xl font-semibold text-slate-700">AI for Java: The Big Picture</h3> <!-- Removed "(Phase 1)" -->
                         <span class="text-teal-500 transform transition-transform duration-300">&#9662;</span>
                     </div>
                     <div class="card-content">
                         <p class="mb-4 text-stone-600">Allocate ~2 hours/week for AI introduction. Understand your role in the AI revolution.</p>
                         <!-- Week 3 -->
                         <h4 class="font-semibold mb-2 text-stone-700">Week 3: AI Impact & Your Role</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="73">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 15 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Understand AI's impact on software development (augmentation vs. replacement).</li>
                                 <li>Resource: <a href="https://www.qlerify.com/post/how-ai-is-revolutionizing-software-engineering-a-complete-sdlc-transformation" target="_blank">How AI is Revolutionizing Software Engineering (Qlerify)</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="74">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 16 (Tue - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Java's enduring relevance in the AI landscape (robustness, scalability for enterprise).</li>
@@ -765,14 +929,16 @@
                         </div>
                         <!-- Week 4 -->
                         <h4 class="font-semibold mt-6 mb-2 text-stone-700">Week 4: AI Integration Patterns Intro</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="75">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 22 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Introduction to Retrieval-Augmented Generation (RAG) concepts.</li>
                                 <li>Resource: <a href="https://aws.amazon.com/what-is/generative-ai/rag" target="_blank">AWS - What is RAG?</a> (Understand concept)</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="76">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 23 (Tue - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Introduction to Vector Databases and Embeddings (why they are important).</li>
@@ -781,14 +947,16 @@
                         </div>
                         <!-- Week 5 -->
                         <h4 class="font-semibold mt-6 mb-2 text-stone-700">Week 5: AI-Powered Dev Tools & Agents Intro</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="77">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 29 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Explore AI-powered dev tools: GitHub Copilot, automated refactoring.</li>
                                 <li>Resource: <a href="https://github.com/features/copilot/" target="_blank">GitHub Copilot</a> (Explore its features)</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="78">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 30 (Tue - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Introduction to AI Agents (what they are, simple use cases).</li>
@@ -797,14 +965,16 @@
                         </div>
                         <!-- Week 6 -->
                         <h4 class="font-semibold mt-6 mb-2 text-stone-700">Week 6: LLM Integration Basics & Review</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="79">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 36 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>LLM Integration: How LLMs are called via REST APIs.</li>
                                 <li>Resource: Read about a basic LLM API (e.g., <a href="https://platform.openai.com/docs/api-reference" target="_blank">OpenAI API Reference - Concepts</a>).</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase1" data-overall-day-id="80">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 37 (Tue - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Review all AI concepts from Phase 1. Ensure you can explain them simply.</li>
@@ -830,60 +1000,77 @@
                 </div>
             </div>
 
+            <!-- Progress Bar for Phase 2 Section -->
+            <div class="progress-bar-container mb-8">
+                <div id="phase2-progress-bar" class="progress-bar">0%</div>
+            </div>
+
             <div class="grid md:grid-cols-1 lg:grid-cols-1 gap-8">
                  <!-- Java Concurrency & Spring Boot Core -->
                 <div class="card">
                     <div class="card-header flex justify-between items-center">
-                        <h3 class="text-xl font-semibold text-slate-700">Backend (Java/Spring Boot/Microservices) & Behavioral (Phase 2)</h3>
+                        <h3 class="text-xl font-semibold text-slate-700">Backend (Java/Spring Boot/Microservices) & Behavioral</h3> <!-- Removed "(Phase 2)" -->
                         <span class="text-teal-500 transform transition-transform duration-300">&#9662;</span>
                     </div>
                     <div class="card-content">
                         <p class="mb-4 text-stone-600">Allocate ~4 hours/week for Backend and ~2 hours/week for Behavioral. Focus on practical application and refining your stories for senior impact.</p>
                         <!-- Week 7 -->
                         <h4 class="font-semibold mb-2 text-stone-700">Week 7: Java Concurrency & Multithreading</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="81">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 43 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Threads, Runnables, Executors, ThreadPoolExecutor.</li>
+                                <li>Coding Task: Implement a simple producer-consumer scenario using `ExecutorService` and `BlockingQueue`.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/java-thread-pool-executor" target="_blank">Baeldung - ThreadPoolExecutor</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="82">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 44 (Tue - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>`synchronized` keyword, `volatile`.</li>
+                                <li>Coding Task: Demonstrate the use of `volatile` keyword in a multithreaded environment.</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/synchronized-keyword-java/" target="_blank">GeeksforGeeks - synchronized</a>, <a href="https://www.baeldung.com/java-volatile" target="_blank">Baeldung - volatile</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="83">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 45 (Wed - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Locks (ReentrantLock, ReadWriteLock).</li>
+                                <li>Coding Task: Implement a simple reader-writer problem using `ReentrantReadWriteLock`.</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/reentrantlock-java/" target="_blank">GeeksforGeeks - ReentrantLock</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="84">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 46 (Thu - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Concurrent Collections (e.g., `ConcurrentHashMap`).</li>
+                                <li>Coding Task: Compare performance and behavior of `HashMap` vs `ConcurrentHashMap` in a simple concurrent scenario.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/java-concurrenthashmap" target="_blank">Baeldung - ConcurrentHashMap</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="85">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 47 (Fri - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>CompletableFuture for asynchronous programming.</li>
+                                <li>Coding Task: Write an asynchronous operation using `CompletableFuture` (e.g., fetching data from multiple sources concurrently).</li>
                                 <li>Resource: <a href="https://www.baeldung.com/java-completablefuture" target="_blank">Baeldung - CompletableFuture</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="86">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 48 (Sat - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Review Java Concurrency topics. Practice writing small concurrent programs.</li>
                                 <li>Behavioral: Review all drafted STAR stories. Identify areas to enhance "Action" and "Result" sections for senior impact.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="87">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 49 (Sun - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Review Java Concurrency (continued).</li>
@@ -892,48 +1079,60 @@
                         </div>
                         <!-- Week 8 -->
                         <h4 class="font-semibold mt-6 mb-2 text-stone-700">Week 8: Spring Boot Core & Behavioral Practice</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="88">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 50 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Spring Boot: IoC Container, Dependency Injection.</li>
+                                <li>Coding Task: Create a basic Spring Boot application and demonstrate `@Autowired` for dependency injection.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/spring-ioc-di" target="_blank">Baeldung - Spring IoC/DI</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="89">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 51 (Tue - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Spring Beans: `@Component`, `@Service`, `@Repository`, `@Controller`.</li>
+                                <li>Coding Task: Define a custom Spring bean and manage its lifecycle (e.g., using `@PostConstruct`).</li>
                                 <li>Resource: <a href="https://www.baeldung.com/spring-component-repository-service-controller-annotations" target="_blank">Baeldung - Spring Annotations</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="90">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 52 (Wed - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Spring MVC: `@RestController`, `@RequestMapping`. Building simple REST endpoints.</li>
+                                <li>Coding Task: Implement a Spring Boot REST endpoint that accepts a POST request with a JSON body.</li>
                                 <li>Resource: <a href="https://spring.io/guides/gs/rest-service/" target="_blank">Spring Guides - Building a RESTful Web Service</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="91">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 53 (Thu - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>RESTful API Design Principles (idempotency, versioning, HATEOAS concepts).</li>
+                                <li>Coding Task: Design a small REST API for a simple resource (e.g., "products") following RESTful principles.</li>
                                 <li>Resource: <a href="https://restfulapi.net/rest-api-design-principles/" target="_blank">RESTful API Design Principles</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="92">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 54 (Fri - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Behavioral: Practice articulating senior impact from your STAR stories. How did you influence decisions?</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="93">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 55 (Sat - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Spring Boot: Build a small REST service from scratch.</li>
+                                <li>Coding Task: Implement a complete, simple REST service with a few endpoints.</li>
                                 <li>Behavioral: Review all STAR stories, focusing on quantifying results.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="94">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 56 (Sun - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Review Spring Boot Core concepts.</li>
@@ -942,47 +1141,59 @@
                         </div>
                         <!-- Week 9 -->
                         <h4 class="font-semibold mt-6 mb-2 text-stone-700">Week 9: Spring Data JPA, Testing & Behavioral</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="95">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 57 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Spring Data JPA & Hibernate basics (Entities, Repositories).</li>
+                                <li>Coding Task: Create a Spring Data JPA entity and repository, perform basic CRUD operations against an in-memory database.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/spring-data-jpa-tutorial" target="_blank">Baeldung - Spring Data JPA</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="96">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 58 (Tue - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>JPA Relationships (`@OneToMany`, `@ManyToOne`, etc.).</li>
+                                <li>Coding Task: Implement a simple `@OneToMany` or `@ManyToOne` relationship between two JPA entities.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/jpa-many-to-many" target="_blank">Baeldung - JPA Relationships</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="97">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 59 (Wed - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Transaction Management (`@Transactional`).</li>
+                                <li>Coding Task: Use `@Transactional` on a service method and test its rollback behavior.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/spring-transactional" target="_blank">Baeldung - Spring @Transactional</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="98">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 60 (Thu - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Unit Testing with JUnit and Mockito (basics).</li>
+                                <li>Coding Task: Write a simple JUnit test for a service class using Mockito to mock a repository dependency.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/junit-5" target="_blank">Baeldung - JUnit 5</a>, <a href="https://www.baeldung.com/mockito-series" target="_blank">Baeldung - Mockito</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="99">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 61 (Fri - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Behavioral: Practice discussing a project where you faced a significant technical challenge and how you solved it.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="100">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 62 (Sat - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Spring Boot: Implement a simple CRUD application with Spring Data JPA and basic testing.</li>
+                                <li>Coding Task: Add integration tests for your CRUD endpoints.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="101">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 63 (Sun - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Review Spring Data JPA, Hibernate, and Testing.</li>
@@ -991,47 +1202,59 @@
                         </div>
                         <!-- Week 10 -->
                         <h4 class="font-semibold mt-6 mb-2 text-stone-700">Week 10: Microservices Intro & Advanced Spring, Behavioral</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="102">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 64 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Microservices Concepts: Advantages/Disadvantages, Bounded Contexts.</li>
+                                <li>Coding Task: Sketch a high-level diagram outlining a system decomposed into microservices, defining bounded contexts.</li>
                                 <li>Resource: <a href="https://microservices.io/patterns/microservices.html" target="_blank">Microservices.io - Patterns</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="103">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 65 (Tue - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Service Discovery (e.g., Eureka concepts).</li>
+                                <li>Coding Task: Configure a basic Spring Cloud Eureka client (minimal setup).</li>
                                 <li>Resource: <a href="https://www.baeldung.com/spring-cloud-eureka" target="_blank">Baeldung - Spring Cloud Eureka</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="104">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 66 (Wed - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>API Gateway (e.g., Spring Cloud Gateway concepts).</li>
+                                <li>Coding Task: Define a simple routing rule in Spring Cloud Gateway to forward requests to a microservice.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/spring-cloud-gateway" target="_blank">Baeldung - Spring Cloud Gateway</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="105">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 67 (Thu - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Spring AOP (Aspect-Oriented Programming).</li>
+                                <li>Coding Task: Implement a simple Spring AOP aspect for logging method execution time.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/spring-aop" target="_blank">Baeldung - Spring AOP</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="106">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 68 (Fri - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Behavioral: Practice discussing a project where you drove a significant business impact. Quantify!</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="107">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 69 (Sat - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Backend Project: Start a very simple 2-service microservices project (e.g., User Service and Product Service).</li>
+                                <li>Coding Task: Implement a basic REST endpoint in each of the two microservices.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="108">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 70 (Sun - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Review Microservices concepts.</li>
@@ -1051,42 +1274,51 @@
                         <p class="mb-4 text-stone-600">Allocate ~7 hours/week for DSA and ~5 hours/week for System Design. Focus on complex problem-solving and deep dives into case studies (HLD & LLD).</p>
                         <!-- Week 7 -->
                         <h4 class="font-semibold mb-2 text-stone-700">Week 7: DSA - Graphs; SD - Database Design (LLD)</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="109">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 43 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Graphs - Adjacency List/Matrix. Deeper DFS/BFS applications.</li>
+                                <li>Coding Task: Implement DFS and BFS for a simple graph represented by an adjacency list.</li>
                                 <li>Resource: <a href="https://neetcode.io/roadmap" target="_blank">NeetCode - Graphs (DFS, BFS)</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="110">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 44 (Tue - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Union-Find (Disjoint Set Union) concept and problems.</li>
+                                <li>Coding Task: Implement a basic Union-Find data structure.</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/union-find-data-structure/" target="_blank">GeeksforGeeks - Union-Find</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="111">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 45 (Wed - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Topological Sort. Solve 2-3 LeetCode Medium/Hard graph problems.</li>
+                                <li>Coding Task: Implement Topological Sort using Kahn's algorithm or DFS.</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/topological-sorting/" target="_blank">GeeksforGeeks - Topological Sort</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="112">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 46 (Thu - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>System Design: Database Design (LLD) - Relational vs NoSQL, Normalization.</li>
                                 <li>Resource: <a href="https://www.freecodecamp.org/news/sql-database-design-tutorial/" target="_blank">FreeCodeCamp - SQL Database Design</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="113">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 47 (Fri - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>System Design: Indexing, Query Optimization concepts.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/sql-indexing" target="_blank">Baeldung - SQL Indexing</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="114">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 48 (Sat - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Solve 3-4 LeetCode Medium/Hard graph problems. (e.g., Number of Islands, Clone Graph).</li>
@@ -1094,7 +1326,8 @@
                                 <li>Resource: <a href="https://www.educative.io/courses/grokking-the-system-design-interview" target="_blank">Grokking - URL Shortener Case Study</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="115">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 49 (Sun - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Review all graph problems.</li>
@@ -1104,42 +1337,51 @@
                         </div>
                         <!-- Week 8 -->
                         <h4 class="font-semibold mt-6 mb-2 text-stone-700">Week 8: DSA - Dynamic Programming Intro; SD - Caching</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="116">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 50 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Dynamic Programming - Intro to Memoization vs Tabulation.</li>
+                                <li>Coding Task: Implement Fibonacci sequence using both memoization and tabulation.</li>
                                 <li>Resource: <a href="https://www.youtube.com/watch?v=oBt53YbR9Kk" target="_blank">YouTube - DP Intro (Abdul Bari)</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="117">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 51 (Tue - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Classic DP problems: Fibonacci, Climbing Stairs. Solve 2-3 LeetCode Easy DP.</li>
+                                <li>Coding Task: Solve "Climbing Stairs" problem using Dynamic Programming.</li>
                                 <li>Resource: <a href="https://neetcode.io/roadmap" target="_blank">NeetCode - Dynamic Programming</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="118">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 52 (Wed - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Basic DP problems: Coin Change (simple versions), House Robber. Solve 1-2 LeetCode Medium DP.</li>
+                                <li>Coding Task: Implement a solution for a simple Coin Change problem.</li>
                                 <li>Resource: <a href="https://leetcode.com/tag/dynamic-programming/" target="_blank">LeetCode - DP Tag</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="119">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 53 (Thu - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>System Design: Caching strategies (in-memory, distributed - Redis concepts).</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/caching-strategies/" target="_blank">GeeksforGeeks - Caching Strategies</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="120">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 54 (Fri - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>System Design: Cache eviction policies (LRU, LFU, FIFO). Cache invalidation.</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/lru-cache-implementation/" target="_blank">GeeksforGeeks - LRU Cache</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="121">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 55 (Sat - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Solve 3-4 LeetCode Medium DP problems.</li>
@@ -1147,7 +1389,8 @@
                                 <li>Resource: <a href="https://www.youtube.com/watch?v=F_fD8v0pYQ0" target="_blank">YouTube - Design Distributed Cache (TechLead)</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="122">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 56 (Sun - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Review all DP problems.</li>
@@ -1156,42 +1399,52 @@
                         </div>
                         <!-- Week 9 -->
                         <h4 class="font-semibold mt-6 mb-2 text-stone-700">Week 9: DSA - Advanced DP & Backtracking; SD - Message Queues</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="123">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 57 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Advanced DP: Longest Common Subsequence, Knapsack (0/1).</li>
+                                <li>Coding Task: Implement a solution for Longest Common Subsequence.</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/longest-common-subsequence-lcs-get-the-problem-statement/" target="_blank">GeeksforGeeks - LCS</a>, <a href="https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/" target="_blank">GeeksforGeeks - Knapsack</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="124">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 58 (Tue - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Advanced DP: Buy/Sell Stock problems. Solve 2-3 LeetCode Medium/Hard DP.</li>
+                                <li>Coding Task: Solve "Best Time to Buy and Sell Stock" (easy version).</li>
                                 <li>Resource: <a href="https://leetcode.com/discuss/general-discussion/649015/best-way-to-learn-dynamic-programming" target="_blank">LeetCode - Best way to learn DP</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="125">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 59 (Wed - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Backtracking Intro: Permutations, Combinations, Subsets.</li>
+                                <li>Coding Task: Implement a function to generate all permutations of a given array.</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/backtracking-introduction/" target="_blank">GeeksforGeeks - Backtracking</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="126">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 60 (Thu - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>System Design: Message Queues (Kafka/RabbitMQ basics, Pub-Sub, Producer-Consumer).</li>
                                 <li>Resource: <a href="https://www.confluent.io/blog/apache-kafka-vs-rabbitmq/" target="_blank">Confluent - Kafka vs RabbitMQ (concepts)</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="127">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 61 (Fri - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Solve 2-3 LeetCode Medium/Hard Backtracking problems (e.g., N-Queens, Combination Sum).</li>
+                                <li>Coding Task: Solve "Combination Sum" or "Subsets" problems using backtracking.</li>
                                 <li>Resource: <a href="https://leetcode.com/tag/backtracking/" target="_blank">LeetCode - Backtracking Tag</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="128">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 62 (Sat - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Review all DP and Backtracking problems.</li>
@@ -1199,7 +1452,8 @@
                                 <li>Resource: <a href="https://www.youtube.com/watch?v=vVj_p6D3hU8" target="_blank">YouTube - Design News Feed (System Design Interview)</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="129">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 63 (Sun - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Participate in a short coding contest (e.g., LeetCode Weekly Contest).</li>
@@ -1208,41 +1462,50 @@
                         </div>
                         <!-- Week 10 -->
                         <h4 class="font-semibold mt-6 mb-2 text-stone-700">Week 10: DSA - Design Questions; SD - Advanced Scalability</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="130">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 64 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Design questions - LRU Cache, LFU Cache.</li>
+                                <li>Coding Task: Implement a simplified LRU Cache using `LinkedHashMap` or a `HashMap` with a `DoublyLinkedList`.</li>
                                 <li>Resource: <a href="https://leetcode.com/problems/lru-cache/" target="_blank">LeetCode - LRU Cache</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="131">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 65 (Tue - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Design questions - Insert Delete GetRandom O(1).</li>
+                                <li>Coding Task: Implement the `Insert Delete GetRandom O(1)` data structure.</li>
                                 <li>Resource: <a href="https://leetcode.com/problems/insert-delete-getrandom-o1/" target="_blank">LeetCode - Insert Delete GetRandom</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="132">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 66 (Wed - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Practice explaining your data structure choices and their tradeoffs for design problems.</li>
+                                <li>Coding Task: Discuss the time/space complexity and trade-offs of different data structures for a given problem.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="133">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 67 (Thu - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>System Design: Advanced Scalability - Sharding/Partitioning databases.</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/sharding-in-databases/" target="_blank">GeeksforGeeks - Sharding</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="134">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 68 (Fri - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>System Design: Consistency in Distributed Systems (revisit CAP theorem, eventual consistency).</li>
                                 <li>Resource: <a href="https://www.baeldung.com/cs/cap-theorem" target="_blank">Baeldung - CAP Theorem</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="135">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 69 (Sat - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Solve 3-4 LeetCode Medium/Hard Design problems.</li>
@@ -1250,7 +1513,8 @@
                                 <li>Resource: <a href="https://www.youtube.com/watch?v=F3Q_oP3t32M" target="_blank">YouTube - Design WhatsApp (System Design Interview)</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="136">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 70 (Sun - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Review all Design problems.</li>
@@ -1263,44 +1527,52 @@
                 <!-- AI for Java: Practical Integration (Phase 2) -->
                 <div class="card">
                     <div class="card-header flex justify-between items-center">
-                        <h3 class="text-xl font-semibold text-slate-700">AI for Java: Practical Integration (Phase 2)</h3>
+                        <h3 class="text-xl font-semibold text-slate-700">AI for Java: Practical Integration</h3> <!-- Removed "(Phase 2)" -->
                         <span class="text-teal-500 transform transition-transform duration-300">&#9662;</span>
                     </div>
                     <div class="card-content">
                         <p class="mb-4 text-stone-600">Allocate ~2 hours/week for AI practicals. Time to write some code with AI frameworks.</p>
                         <!-- Week 7 -->
                         <h4 class="font-semibold mb-2 text-stone-700">Week 7: Spring AI / LangChain4j Setup</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="137">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 43 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Install and set up Spring AI or LangChain4j in a new Spring Boot project.</li>
+                                <li>Coding Task: Create a new Spring Boot project and add Spring AI or LangChain4j starter dependencies.</li>
                                 <li>Resource: <a href="https://docs.spring.io/spring-ai/reference/getting-started.html" target="_blank">Spring AI Getting Started</a>, <a href="https://docs.langchain4j.dev/getting-started" target="_blank">LangChain4j Getting Started</a></li>
                             </ul>
                         </div>
                         <!-- Week 8 -->
                         <h4 class="font-semibold mt-6 mb-2 text-stone-700">Week 8: Basic LLM Integration (Java)</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="138">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 50 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Make basic text generation calls using Spring AI/LangChain4j with a local Ollama model or a free tier cloud model.</li>
+                                <li>Coding Task: Implement a simple chat completion endpoint using Spring AI/LangChain4j.</li>
                                 <li>Resource: <a href="https://spring.io/blog/2023/12/11/getting-started-with-spring-ai-chat-apis" target="_blank">Spring AI Chat APIs</a></li>
                             </ul>
                         </div>
                         <!-- Week 9 -->
                         <h4 class="font-semibold mt-6 mb-2 text-stone-700">Week 9: Embeddings & Vector DB (Concepts + Java Intro)</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="139">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 57 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Understand Vector Embeddings in depth. Explore embedding models.</li>
+                                <li>Coding Task: Generate embeddings for a small text snippet using a Spring AI/LangChain4j client.</li>
                                 <li>Resource: <a href="https://www.sbert.net/docs/usage/general.html" target="_blank">Sentence-BERT (for embedding concepts)</a></li>
                             </ul>
                         </div>
                         <!-- Week 10 -->
                         <h4 class="font-semibold mt-6 mb-2 text-stone-700">Week 10: RAG Introduction (Java)</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase2" data-overall-day-id="140">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 64 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Start a simple RAG PoC: Load a small text document, create embeddings, store in a local in-memory vector store (via Spring AI/LangChain4j), and query.</li>
+                                <li>Coding Task: Implement a basic RAG pipeline by loading text, creating embeddings, and performing a similarity search.</li>
                                 <li>Resource: <a href="https://docs.spring.io/spring-ai/reference/concepts/rag.html" target="_blank">Spring AI RAG Concepts</a></li>
                             </ul>
                         </div>
@@ -1325,58 +1597,75 @@
                 </div>
             </div>
 
+            <!-- Progress Bar for Phase 3 Section -->
+            <div class="progress-bar-container mb-8">
+                <div id="phase3-progress-bar" class="progress-bar">0%</div>
+            </div>
+
             <div class="grid md:grid-cols-1 lg:grid-cols-1 gap-8">
                 <!-- Comprehensive Backend Review & Advanced Microservices -->
                 <div class="card">
                     <div class="card-header flex justify-between items-center">
-                        <h3 class="text-xl font-semibold text-slate-700">Backend Review & Advanced Microservices (Phase 3)</h3>
+                        <h3 class="text-xl font-semibold text-slate-700">Backend Review & Advanced Microservices</h3> <!-- Removed "(Phase 3)" -->
                         <span class="text-teal-500 transform transition-transform duration-300">&#9662;</span>
                     </div>
                     <div class="card-content">
                         <p class="mb-4 text-stone-600">Allocate ~3-4 hours/week for comprehensive backend review. Revisit core Java and Spring concepts. Dive into advanced microservices patterns and operational aspects.</p>
                         <!-- Week 13 -->
                         <h4 class="font-semibold mb-2 text-stone-700">Week 13: Advanced Java & Spring Security</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="141">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 71 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>JVM Tuning basics (Heap size, GC algorithms concepts: G1, ZGC).</li>
+                                <li>Coding Task: Simulate a simple GC scenario in Java to understand memory behavior.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/jvm-garbage-collectors" target="_blank">Baeldung - JVM GC</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="142">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 72 (Tue - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Spring Security: Authentication (Basic Auth, JWT concepts).</li>
+                                <li>Coding Task: Configure basic HTTP Basic Authentication in a Spring Boot application.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/spring-security-basics" target="_blank">Baeldung - Spring Security Basics</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="143">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 73 (Wed - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Spring Security: Authorization (`@PreAuthorize`). OAuth2 concepts.</li>
+                                <li>Coding Task: Secure a REST endpoint using `@PreAuthorize` based on user roles.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/spring-security-oauth2" target="_blank">Baeldung - Spring Security OAuth2</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="144">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 74 (Thu - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Spring Boot Actuator for monitoring.</li>
+                                <li>Coding Task: Enable and explore Actuator endpoints of a Spring Boot app (e.g., `/actuator/health`).</li>
                                 <li>Resource: <a href="https://www.baeldung.com/spring-boot-actuator" target="_blank">Baeldung - Spring Boot Actuator</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="145">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 75 (Fri - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Review all Java Concurrency topics.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="146">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 76 (Sat - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Backend Project: Integrate Spring Security into your microservices project.</li>
+                                <li>Coding Task: Secure inter-service communication in your microservices project (e.g., using shared secrets or JWTs).</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="147">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 77 (Sun - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Review Spring Boot Core concepts and Spring Data JPA.</li>
@@ -1384,47 +1673,59 @@
                         </div>
                         <!-- Week 14 -->
                         <h4 class="font-semibold mt-6 mb-2 text-stone-700">Week 14: Microservices Resilience & Deployment</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="148">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 78 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Distributed Transactions (Saga pattern concepts).</li>
+                                <li>Coding Task: Sketch a Saga pattern flow for a hypothetical distributed transaction scenario.</li>
                                 <li>Resource: <a href="https://microservices.io/patterns/data/saga.html" target="_blank">Microservices.io - Saga Pattern</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="149">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 79 (Tue - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Idempotency in distributed systems.</li>
+                                <li>Coding Task: Implement an idempotent REST endpoint (e.g., for processing payments) in a simple Spring Boot app.</li>
                                 <li>Resource: <a href="https://www.baeldung.com/rest-api-idempotency" target="_blank">Baeldung - REST Idempotency</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="150">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 80 (Wed - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Circuit Breakers (Resilience4j concepts).</li>
+                                <li>Coding Task: Simulate a basic circuit breaker pattern (e.g., manually fail a service call after N attempts).</li>
                                 <li>Resource: <a href="https://www.baeldung.com/resilience4j" target="_blank">Baeldung - Resilience4j</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="151">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 81 (Thu - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Containerization: Docker basics (Dockerfile for Spring Boot app).</li>
+                                <li>Coding Task: Create a Dockerfile for your Spring Boot application and build a Docker image.</li>
                                 <li>Resource: <a href="https://docs.docker.com/get-started/" target="_blank">Docker Get Started</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="152">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 82 (Fri - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Review all Microservices concepts.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="153">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 83 (Sat - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Backend Project: Dockerize your microservices project.</li>
+                                <li>Coding Task: Run your Dockerized microservices locally and verify inter-service communication.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="154">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 84 (Sun - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Review all backend related topics from Phase 2.</li>
@@ -1432,48 +1733,60 @@
                         </div>
                         <!-- Week 15 -->
                         <h4 class="font-semibold mt-6 mb-2 text-stone-700">Week 15: Kubernetes & Observability</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="155">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 85 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Orchestration: Kubernetes concepts (Pods, Deployments, Services).</li>
+                                <li>Coding Task: Write a basic Kubernetes Pod definition (YAML) for a simple application.</li>
                                 <li>Resource: <a href="https://kubernetes.io/docs/concepts/" target="_blank">Kubernetes Concepts</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="156">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 86 (Tue - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Observability: Logging (ELK/Splunk concepts).</li>
+                                <li>Coding Task: Implement structured logging in a Spring Boot app (e.g., using Logback and JSON format).</li>
                                 <li>Resource: <a href="https://www.elastic.co/what-is/elk-stack" target="_blank">What is ELK Stack?</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="157">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 87 (Wed - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Observability: Monitoring (Prometheus/Grafana concepts).</li>
+                                <li>Coding Task: Integrate Prometheus metrics into a Spring Boot app via Actuator.</li>
                                 <li>Resource: <a href="https://prometheus.io/docs/introduction/overview/" target="_blank">Prometheus Overview</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="158">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 88 (Thu - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Observability: Tracing (Sleuth/OpenTracing concepts).</li>
+                                <li>Coding Task: Add Spring Cloud Sleuth to your microservices project for distributed tracing.</li>
                                 <li>Resource: <a href="https://spring.io/guides/gs/tracing/" target="_blank">Spring Guides - Distributed Tracing</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="159">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 89 (Fri - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Review all Backend core concepts.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="160">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 90 (Sat - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Backend Project: Explore deploying a simple Spring Boot app to Minikube (local Kubernetes).</li>
+                                <li>Coding Task: Deploy a simple Dockerized Spring Boot app to a local Minikube cluster.</li>
                                 <li>Resource: <a href="https://minikube.sigs.k8s.io/docs/start/" target="_blank">Minikube Get Started</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="161">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 91 (Sun - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Review all Advanced Microservices topics.</li>
@@ -1481,19 +1794,24 @@
                         </div>
                         <!-- Week 16 -->
                         <h4 class="font-semibold mt-6 mb-2 text-stone-700">Week 16: Final Backend Polish</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="162">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 92 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Deep dive into one backend area you feel less confident in (e.g., specific Spring annotation, database optimization technique).</li>
+                                <li>Coding Task: Optimize a specific database query or a piece of Java code for performance.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="163">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 93 (Tue - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Practice explaining your microservices project architecture and technology choices.</li>
+                                <li>Coding Task: Prepare a presentation (even just bullet points) on the architecture of your microservices project.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="164">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 94 (Wed - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Review common Java/Spring interview questions.</li>
@@ -1513,39 +1831,48 @@
                         <p class="mb-4 text-stone-600">Allocate ~7 hours/week for DSA and System Design review. Focus on identifying and fixing weak areas.</p>
                         <!-- Week 13 -->
                         <h4 class="font-semibold mb-2 text-stone-700">Week 13: DSA Hard Problems & Advanced Graphs</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="165">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 71 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Tackle 2 new LeetCode Hard problems (mix of DP/Graphs).</li>
                                 <li>Focus on understanding the problem decomposition.</li>
+                                <li>Coding Task: Attempt to solve one new LeetCode Hard problem, focusing on breaking it down.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="166">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 72 (Tue - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Review advanced graph algorithms (e.g., Dijkstra's, Bellman-Ford - concepts and when to use).</li>
+                                <li>Coding Task: Implement Dijkstra's algorithm for a small weighted graph.</li>
                                 <li>Resource: <a href="https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/" target="_blank">GeeksforGeeks - Dijkstra's</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="167">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 73 (Wed - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Review more LeetCode Hard problems. Re-solve a previous challenging problem.</li>
+                                <li>Coding Task: Re-solve a LeetCode Hard problem that you struggled with previously.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="168">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 74 (Thu - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>System Design: Review all major System Design topics. Focus on key principles (Scalability, Reliability, Availability).</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="169">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 75 (Fri - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Participate in a short coding contest (e.g., LeetCode contest, HackerRank).</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="170">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 76 (Sat - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Solve 3-4 LeetCode Hard problems.</li>
@@ -1553,7 +1880,8 @@
                                 <li>Resource: <a href="https://www.youtube.com/watch?v=kYJ0hTng_2A" target="_blank">YouTube - Twitter System Design (System Design Interview)</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="171">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 77 (Sun - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Review solutions, especially for problems you couldn't solve.</li>
@@ -1562,37 +1890,47 @@
                         </div>
                         <!-- Week 14 -->
                         <h4 class="font-semibold mt-6 mb-2 text-stone-700">Week 14: DSA & System Design Consolidation</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="172">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 78 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Focus on a specific DSA area where you still feel weak (e.g., specific DP patterns, specific graph problem types).</li>
+                                <li>Coding Task: Solve a problem specifically targeting your weakest DSA area.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="173">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 79 (Tue - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Solve 2-3 LeetCode Hard problems.</li>
+                                <li>Coding Task: Attempt one new LeetCode Hard problem focusing on optimal solution.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="174">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 80 (Wed - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>System Design: Practice designing a system, clearly outlining HLD and LLD for one critical component.</li>
+                                <li>Coding Task: Draw a HLD for a feature you'd add to a popular social media app.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="175">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 81 (Thu - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>System Design: Review your understanding of different database types (SQL, NoSQL, graph DBs, vector DBs) and when to use them.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="176">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 82 (Fri - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Practice writing code on paper/whiteboard for 1-2 problems.</li>
+                                <li>Coding Task: Write the code for a simple LeetCode Medium problem on a whiteboard (or plain text editor without running).</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="177">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 83 (Sat - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Solve 3-4 LeetCode Hard problems.</li>
@@ -1600,7 +1938,8 @@
                                 <li>Resource: <a href="https://www.youtube.com/watch?v=fxZ2Ff28GGM" target="_blank">YouTube - Design Uber (System Design Interview)</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="178">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 84 (Sun - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Conduct a self-mock coding session (45-60 min).</li>
@@ -1609,43 +1948,51 @@
                         </div>
                         <!-- Week 15 -->
                         <h4 class="font-semibold mt-6 mb-2 text-stone-700">Week 15: Final DSA & System Design Polish</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="179">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 85 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Re-solve your top 5 most challenging LeetCode problems.</li>
+                                <li>Coding Task: Re-implement one of your top 5 challenging LeetCode problems from scratch.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="180">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 86 (Tue - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Review all fundamental DSA concepts, ensuring clarity on time/space complexity.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="181">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 87 (Wed - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>System Design: Practice explaining a complex design problem to yourself, as if explaining to an interviewer.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="182">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 88 (Thu - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>System Design: Review common interview pitfalls and how to avoid them (e.g., jumping to solution, not clarifying).</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="183">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 89 (Fri - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Light review of easy/medium problems.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="184">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 90 (Sat - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>System Design: Conduct a full mock system design interview with a peer/mentor.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="185">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 91 (Sun - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>DSA: Conduct a full mock coding interview (45-60 min).</li>
@@ -1655,56 +2002,53 @@
                 </div>
 
                 <!-- Mock Interviews & AI Application -->
-                <div class="card border-2 border-teal-500">
+                <div class="card"> <!-- Removed border-2 border-teal-500 from here because it's now global -->
                     <div class="card-header flex justify-between items-center">
-                        <h3 class="text-xl font-semibold text-slate-700">Mock Interviews & AI Application (Phase 3)</h3>
+                        <h3 class="text-xl font-semibold text-slate-700">Mock Interviews & AI Application</h3> <!-- Removed "(Phase 3)" -->
                         <span class="text-teal-500 transform transition-transform duration-300">&#9662;</span>
                     </div>
                     <div class="card-content">
                         <p class="mb-4 text-stone-600">Allocate ~7-8 hours/week for mock interviews and AI practicals. This is where all your hard work comes together. Start networking actively for referrals.</p>
                         <!-- Week 13 -->
-                        <h4 class="font-semibold mb-2 text-stone-700">Week 13: Mock Coding & Behavioral, AI RAG Development</h4>
-                        <div class="day-plan">
+                        <h4 class="font-semibold mb-2 text-stone-700">Week 13: Mock Coding (DSA) & AI RAG Development</h4>
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="186">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 71 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
-                                <li>Mock Interview: Conduct a mock coding interview (45-60 min) with a peer/platform. Focus on explaining your thought process clearly.</li>
+                                <li><strong>Mock Interview (DSA):</strong> Conduct a mock coding interview (45-60 min) with a peer/platform. Focus on explaining your thought process clearly.</li>
                                 <li>Resource: <a href="https://pramp.com/" target="_blank">Pramp</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="187">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 72 (Tue - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>AI for Java: Continue working on your RAG chatbot PoC. Focus on getting it to work end-to-end with a small local document.</li>
+                                <li>Coding Task: Expand your RAG PoC to handle multiple documents or a slightly larger dataset.</li>
                                 <li>Resource: <a href="https://docs.spring.io/spring-ai/reference/concepts/rag.html" target="_blank">Spring AI RAG Concepts</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
-                            <h5>Day 73 (Wed - 2 hrs)</h5>
-                            <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
-                                <li>Mock Interview: Conduct a mock behavioral interview. Practice delivering your STAR stories confidently.</li>
-                            </ul>
-                        </div>
-                        <div class="day-plan">
+                        <!-- Removed Day 73 (overall-day-id="188") - Mock Behavioral Interview -->
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="189">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 74 (Thu - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>AI for Java: Explore different vector database integrations (e.g., use a basic in-memory vector store in LangChain4j).</li>
+                                <li>Coding Task: Integrate a simple in-memory vector store into your RAG PoC using LangChain4j.</li>
                                 <li>Resource: <a href="https://docs.langchain4j.dev/tutorials/vector-store/" target="_blank">LangChain4j Vector Store Tutorials</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
-                            <h5>Day 75 (Fri - 2 hrs)</h5>
-                            <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
-                                <li>Mock Interview: Review feedback from mock interviews. Identify areas for improvement (e.g., faster problem-solving, clearer communication).</li>
-                            </ul>
-                        </div>
-                        <div class="day-plan">
+                        <!-- Removed Day 75 (overall-day-id="190") - Mock Interview Review -->
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="191">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 76 (Sat - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
-                                <li>Mock Interview: Conduct another full mock coding interview.</li>
+                                <li><strong>Mock Interview (Java/Spring Boot):</strong> Conduct a focused Java/Spring Boot coding interview (45-60 min).</li>
                                 <li>AI for Java: Refine your RAG chatbot, add simple UI (e.g., command line input).</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="192">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 77 (Sun - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Behavioral: Practice discussing your AI project and how it leverages AI principles.</li>
@@ -1713,44 +2057,47 @@
                         </div>
                         <!-- Week 14 -->
                         <h4 class="font-semibold mt-6 mb-2 text-stone-700">Week 14: Mock System Design & AI Agents</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="193">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 78 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
-                                <li>Mock Interview: Conduct a mock system design interview. Focus on clarifying requirements and leading the discussion.</li>
+                                <li><strong>Mock Interview (System Design):</strong> Conduct a mock system design interview. Focus on clarifying requirements and leading the discussion.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="194">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 79 (Tue - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>AI for Java: Explore building a simple AI Agent with LangChain4j (e.g., an agent that can call a simple Java function).</li>
+                                <li>Coding Task: Implement a basic AI agent that can execute a predefined Java function (tool).</li>
                                 <li>Resource: <a href="https://docs.langchain4j.dev/tutorials/tool-calling/" target="_blank">LangChain4j Tool Calling</a></li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="195">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 80 (Wed - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
-                                <li>Mock Interview: Review feedback from System Design mock. Focus on improving structuring answers and trade-off discussions.</li>
+                                <li>AI for Java: Refine agent capabilities to call multiple tools.</li>
+                                <li>Coding Task: Enhance your AI agent to be able to call more than one Java tool based on user input.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="196">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 81 (Thu - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Behavioral: Practice answering common senior-level behavioral questions (e.g., "Tell me about a time you had to deliver bad news").</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="197">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 82 (Fri - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>AI for Java: Review AI concepts and your PoC.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
-                            <h5>Day 83 (Sat - 4 hrs)</h5>
-                            <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
-                                <li>Mock Interview: Conduct a "full loop" mock interview (coding + system design + behavioral) if possible.</li>
-                            </ul>
-                        </div>
-                        <div class="day-plan">
+                        <!-- Removed Day 83 (overall-day-id="198") - Mock Full Loop Interview -->
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="199">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 84 (Sun - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Final review of all prepared STAR stories.</li>
@@ -1759,48 +2106,151 @@
                         </div>
                         <!-- Week 15 -->
                         <h4 class="font-semibold mt-6 mb-2 text-stone-700">Week 15: Final Polish & Networking Push</h4>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="200">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 85 (Mon - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Review common technical pitfalls for senior engineers and how to avoid them (e.g., over-engineering, not considering scale).</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="201">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 86 (Tue - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Networking: Identify target companies and roles. Customize your resume/LinkedIn for each application.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="202">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 87 (Wed - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Review your AI for Java project and be ready to discuss it in detail, focusing on its business value.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="203">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 88 (Thu - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Networking: Reach out to connections for referrals.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="204">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 89 (Fri - 2 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Final quick review of all core concepts across DSA, System Design, Java, Spring Boot, Microservices, and AI.</li>
                             </ul>
                         </div>
-                        <div class="day-plan">
-                            <h5>Day 90 (Sat - 4 hrs)</h5>
-                            <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
-                                <li>Mock Interview: One final mock interview (coding or system design, based on your perceived weakest area).</li>
-                            </ul>
-                        </div>
-                        <div class="day-plan">
+                        <!-- Removed Day 90 (overall-day-id="205") - One final mock interview -->
+                        <div class="day-plan" data-phase-id="phase3" data-overall-day-id="206">
+                            <input type="checkbox" class="day-checkbox">
                             <h5>Day 91 (Sun - 4 hrs)</h5>
                             <ul class="space-y-1 list-disc list-inside text-stone-600 ml-4">
                                 <li>Rest and prepare mentally for upcoming interviews. Light review only.</li>
                             </ul>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Top Coding Questions List -->
+        <section id="top-coding-questions" class="mb-16 pt-16 -mt-16 p-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-800">Top Coding Interview Questions (Curated List)</h2>
+                <p class="mt-2 max-w-3xl mx-auto text-stone-700">Here's a curated list of frequently asked and highly representative coding problems to solidify your understanding of core DSA concepts.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Arrays & Hashing -->
+                <div class="card">
+                    <div class="card-header flex justify-between items-center bg-stone-100">
+                        <h3 class="text-xl font-semibold text-slate-700">Arrays & Hashing</h3>
+                    </div>
+                    <div class="card-content open">
+                        <ul class="list-disc list-inside text-stone-600 space-y-2">
+                            <li><a href="https://leetcode.com/problems/two-sum/" target="_blank">Two Sum</a></li>
+                            <li><a href="https://leetcode.com/problems/valid-anagram/" target="_blank">Valid Anagram</a></li>
+                            <li><a href="https://leetcode.com/problems/group-anagrams/" target="_blank">Group Anagrams</a></li>
+                            <li><a href="https://leetcode.com/problems/top-k-frequent-elements/" target="_blank">Top K Frequent Elements</a></li>
+                            <li><a href="https://leetcode.com/problems/product-of-array-except-self/" target="_blank">Product of Array Except Self</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Two Pointers / Sliding Window -->
+                <div class="card">
+                    <div class="card-header flex justify-between items-center bg-stone-100">
+                        <h3 class="text-xl font-semibold text-slate-700">Two Pointers / Sliding Window</h3>
+                    </div>
+                    <div class="card-content open">
+                        <ul class="list-disc list-inside text-stone-600 space-y-2">
+                            <li><a href="https://leetcode.com/problems/valid-palindrome/" target="_blank">Valid Palindrome</a></li>
+                            <li><a href="https://leetcode.com/problems/3sum/" target="_blank">3Sum</a></li>
+                            <li><a href="https://leetcode.com/problems/container-with-most-water/" target="_blank">Container With Most Water</a></li>
+                            <li><a href="https://leetcode.com/problems/longest-substring-without-repeating-characters/" target="_blank">Longest Substring Without Repeating Characters</a></li>
+                            <li><a href="https://leetcode.com/problems/permutation-in-string/" target="_blank">Permutation in String</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Linked List -->
+                <div class="card">
+                    <div class="card-header flex justify-between items-center bg-stone-100">
+                        <h3 class="text-xl font-semibold text-slate-700">Linked List</h3>
+                    </div>
+                    <div class="card-content open">
+                        <ul class="list-disc list-inside text-stone-600 space-y-2">
+                            <li><a href="https://leetcode.com/problems/reverse-linked-list/" target="_blank">Reverse Linked List</a></li>
+                            <li><a href="https://leetcode.com/problems/merge-two-sorted-lists/" target="_blank">Merge Two Sorted Lists</a></li>
+                            <li><a href="https://leetcode.com/problems/reorder-list/" target="_blank">Reorder List</a></li>
+                            <li><a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/" target="_blank">Remove Nth Node From End of List</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Trees & Graphs -->
+                <div class="card">
+                    <div class="card-header flex justify-between items-center bg-stone-100">
+                        <h3 class="text-xl font-semibold text-slate-700">Trees & Graphs</h3>
+                    </div>
+                    <div class="card-content open">
+                        <ul class="list-disc list-inside text-stone-600 space-y-2">
+                            <li><a href="https://leetcode.com/problems/invert-binary-tree/" target="_blank">Invert Binary Tree</a></li>
+                            <li><a href="https://leetcode.com/problems/maximum-depth-of-binary-tree/" target="_blank">Maximum Depth of Binary Tree</a></li>
+                            <li><a href="https://leetcode.com/problems/same-tree/" target="_blank">Same Tree</a></li>
+                            <li><a href="https://leetcode.com/problems/number-of-islands/" target="_blank">Number of Islands</a></li>
+                            <li><a href="https://leetcode.com/problems/rotting-oranges/" target="_blank">Rotting Oranges</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Dynamic Programming -->
+                <div class="card">
+                    <div class="card-header flex justify-between items-center bg-stone-100">
+                        <h3 class="text-xl font-semibold text-slate-700">Dynamic Programming</h3>
+                    </div>
+                    <div class="card-content open">
+                        <ul class="list-disc list-inside text-stone-600 space-y-2">
+                            <li><a href="https://leetcode.com/problems/climbing-stairs/" target="_blank">Climbing Stairs</a></li>
+                            <li><a href="https://leetcode.com/problems/house-robber/" target="_blank">House Robber</a></li>
+                            <li><a href="https://leetcode.com/problems/coin-change/" target="_blank">Coin Change</a></li>
+                            <li><a href="https://leetcode.com/problems/longest-increasing-subsequence/" target="_blank">Longest Increasing Subsequence</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Design & Misc -->
+                <div class="card">
+                    <div class="card-header flex justify-between items-center bg-stone-100">
+                        <h3 class="text-xl font-semibold text-slate-700">Design & Misc</h3>
+                    </div>
+                    <div class="card-content open">
+                        <ul class="list-disc list-inside text-stone-600 space-y-2">
+                            <li><a href="https://leetcode.com/problems/lru-cache/" target="_blank">LRU Cache</a></li>
+                            <li><a href="https://leetcode.com/problems/min-stack/" target="_blank">Min Stack</a></li>
+                            <li><a href="https://leetcode.com/problems/design-add-and-search-words-data-structure/" target="_blank">Design Add and Search Words Data Structure</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -1853,20 +2303,38 @@
 
             const observerOptions = {
                 root: null,
-                rootMargin: '0px',
-                threshold: 0.2 // Trigger when 20% of the section is visible
+                rootMargin: '-50% 0px -50% 0px', // Adjust rootMargin to make intersection more central
+                threshold: 0 // Only trigger when target enters or exits the root. We control active state based on position not percentage visible.
             };
 
             const observer = new IntersectionObserver((entries) => {
+                let currentActive = null;
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        navLinks.forEach(link => {
-                            link.classList.remove('active');
-                        });
-                        const currentNavLink = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
-                        if (currentNavLink) {
-                            currentNavLink.classList.add('active');
-                        }
+                    // If a section is intersecting and its top is above the middle of the viewport
+                    // or if it's the first section and it's entering
+                    if (entry.isIntersecting && entry.boundingClientRect.top <= window.innerHeight / 2) {
+                        currentActive = entry.target.id;
+                    }
+                });
+
+                // Handle the case where the user might be at the very top or bottom
+                // If no section is actively intersecting in the middle, default to the first
+                // or check if we are at the very bottom
+                if (!currentActive) {
+                    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                    const documentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+
+                    if (scrollTop < sections[0].offsetTop + sections[0].offsetHeight / 2) {
+                        currentActive = sections[0].id; // Default to first if at the very top
+                    } else if (scrollTop + window.innerHeight >= documentHeight - 50) { // Near bottom
+                         currentActive = sections[sections.length - 1].id;
+                    }
+                }
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === currentActive) {
+                        link.classList.add('active');
                     }
                 });
             }, observerOptions);
@@ -1874,7 +2342,94 @@
             sections.forEach(section => {
                 observer.observe(section);
             });
-            
+
+            // Set initial active link on load
+            window.addEventListener('load', () => {
+                const currentScrollY = window.scrollY;
+                sections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                        const currentNavLink = document.querySelector(`.nav-link[href="#${section.id}"]`);
+                        if (currentNavLink) {
+                            navLinks.forEach(link => link.classList.remove('active'));
+                            currentNavLink.classList.add('active');
+                        }
+                    }
+                });
+                 // Fallback for when no section is perfectly centered, e.g., at very top
+                if (!document.querySelector('.nav-link.active') && sections.length > 0) {
+                     const firstNavLink = document.querySelector(`.nav-link[href="#${sections[0].id}"]`);
+                     if (firstNavLink) firstNavLink.classList.add('active');
+                }
+            });
+
+
+            // Progress Bar and Checkbox Logic for ALL Phases
+            const phaseInfo = {
+                'fast-track': { totalDays: 30, progressBarId: 'fast-track-progress-bar' },
+                'phase1': { totalDays: 42, progressBarId: 'phase1-progress-bar' },
+                'phase2': { totalDays: 60, progressBarId: 'phase2-progress-bar' },
+                'phase3': { totalDays: 63, progressBarId: 'phase3-progress-bar' } // Adjusted totalDays after removing 3 days
+            };
+
+            const allCheckboxes = document.querySelectorAll('.day-checkbox');
+
+            // Function to update the progress bar for a specific phase
+            function updatePhaseProgressBar(phaseId) {
+                const phaseConfig = phaseInfo[phaseId];
+                if (!phaseConfig) return;
+
+                const progressBar = document.getElementById(phaseConfig.progressBarId);
+                if (!progressBar) return;
+
+                let completedDaysInPhase = 0;
+                const checkboxesInPhase = document.querySelectorAll(`[data-phase-id="${phaseId}"] .day-checkbox`);
+                
+                checkboxesInPhase.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        completedDaysInPhase++;
+                    }
+                });
+
+                const progressPercentage = (completedDaysInPhase / phaseConfig.totalDays) * 100;
+                progressBar.style.width = progressPercentage + '%';
+                progressBar.textContent = Math.round(progressPercentage) + '%';
+                progressBar.classList.toggle('text-slate-800', progressPercentage < 10); 
+            }
+
+            // Load saved progress from local storage and apply to checkboxes
+            allCheckboxes.forEach(checkbox => {
+                const overallDayId = checkbox.dataset.overallDayId;
+                const isCompleted = localStorage.getItem(`day_${overallDayId}`) === 'true';
+                checkbox.checked = isCompleted;
+                if (isCompleted) {
+                    checkbox.parentElement.classList.add('completed');
+                }
+            });
+
+            // Add event listeners to checkboxes for saving progress and updating bars
+            allCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', (event) => {
+                    const overallDayId = event.target.dataset.overallDayId;
+                    const phaseId = event.target.dataset.phaseId;
+
+                    if (event.target.checked) {
+                        localStorage.setItem(`day_${overallDayId}`, 'true');
+                        event.target.parentElement.classList.add('completed');
+                    } else {
+                        localStorage.setItem(`day_${overallDayId}`, 'false');
+                        event.target.parentElement.classList.remove('completed');
+                    }
+                    updatePhaseProgressBar(phaseId);
+                });
+            });
+
+            // Initial progress bar update for all phases on load
+            for (const phaseId in phaseInfo) {
+                updatePhaseProgressBar(phaseId);
+            }
+
+
             // Chart.js Configuration
             const chartOptions = {
                 indexAxis: 'y',
